@@ -3,6 +3,7 @@ package com.temporintech.animalhaven.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,9 +19,13 @@ public class Shelter implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String address;
+    @Column(nullable = false)
     private String phoneNumber;
+    @Column(nullable = false)
     private int capacity;
 
     public Shelter(UUID id, String name, String address, String phoneNumber, int capacity) {
