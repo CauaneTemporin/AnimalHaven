@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "TB_SPECIES")
 public class Species implements Serializable{
     
 	private static final long serialVersionUID = 1L;
@@ -17,11 +21,6 @@ public class Species implements Serializable{
 	private UUID id;
     @Column(nullable = false)
     private String name;
-
-    public Species(UUID id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public UUID getId() {
         return id;
