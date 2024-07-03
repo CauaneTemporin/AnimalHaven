@@ -30,6 +30,7 @@ public class Vaccine implements Serializable{
     private String lotNumber;
     @Column(nullable = false)
     private String responsibleVeterinarian;
+    
 	public UUID getId() {
 		return id;
 	}
