@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "TB_ANIMAL")
-public class Animal implements Serializable{
+public class AnimalModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

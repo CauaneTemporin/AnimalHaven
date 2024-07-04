@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "TB_SHELTER")
-public class Shelter implements Serializable{
+public class ShelterModel implements Serializable{
     
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +28,7 @@ public class Shelter implements Serializable{
     @Column(nullable = false)
     private int capacity;
 
-    public Shelter(UUID id, String name, String address, String phoneNumber, int capacity) {
+    public ShelterModel(UUID id, String name, String address, String phoneNumber, int capacity) {
         this.id = id;
         this.name = name;
         this.address = address;

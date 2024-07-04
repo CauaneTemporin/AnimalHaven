@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "TB_VACCINE")
-public class Vaccine implements Serializable{
+public class VaccineModel implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
