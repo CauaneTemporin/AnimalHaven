@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +48,18 @@ public class Animalcontroller {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal not found.");
 
 		return ResponseEntity.status(HttpStatus.OK).body(animal.get());
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateAnimal(@PathVariable(value = "id") UUID id,
+			@RequestBody @Valid AnimalRecordDTO dto) {
+		Optional<AnimalModel> animal = repository.findById(id);
+		if (animal.isEmpty())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Animal not found.");
+
+		var animalModel = animal.get();
+		BeanUtils.copyProperties(dto, animalModel);
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(animalModel));
 	}
 
 }
