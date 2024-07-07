@@ -4,8 +4,14 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.UUID;
 
+import com.temporintech.animalhaven.enums.animal.Gender;
+import com.temporintech.animalhaven.enums.animal.Health;
+import com.temporintech.animalhaven.enums.animal.Status;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,18 +30,21 @@ public class AnimalModel implements Serializable{
 	private String name;
     @Column(nullable = false)
 	private int age;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-	private String gender;
+	private Gender gender;
     @Column(nullable = false)
 	private double weight;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-	private String health;
+	private Health health;
     @Column(nullable = false)
 	private Date dateEntered;
     @Column(nullable = false)
 	private String description;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-	private String status;
+	private Status status;
     @Column(nullable = false)
 	private boolean castrated;
     
@@ -57,10 +66,10 @@ public class AnimalModel implements Serializable{
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
-	public void setGender(String gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 	public double getWeight() {
@@ -69,10 +78,10 @@ public class AnimalModel implements Serializable{
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	public String getHealth() {
+	public Health getHealth() {
 		return health;
 	}
-	public void setHealth(String health) {
+	public void setHealth(Health health) {
 		this.health = health;
 	}
 	public Date getDateEntered() {
@@ -87,10 +96,10 @@ public class AnimalModel implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	public boolean isCastrated() {
