@@ -1,5 +1,8 @@
 package com.temporintech.animalhaven.controllers;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,4 +32,10 @@ public class Animalcontroller {
 		BeanUtils.copyProperties(dto, model);
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
 	}
+
+	@GetMapping
+	public ResponseEntity<List<AnimalModel>> getAllAnimal() {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+	}
+
 }
