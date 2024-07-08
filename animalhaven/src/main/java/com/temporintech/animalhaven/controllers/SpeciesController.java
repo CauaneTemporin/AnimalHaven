@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +40,7 @@ public class SpeciesController {
 	public ResponseEntity<List<SpeciesModel>> getAllSpecies() {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getOneSpecies(@PathVariable(value = "id") UUID id) {
 		Optional<SpeciesModel> species = repository.findById(id);
@@ -47,5 +48,16 @@ public class SpeciesController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Species not found");
 
 		return ResponseEntity.status(HttpStatus.OK).body(species.get());
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateSpecies(@PathVariable(value = "id") UUID id,
+			@RequestBody @Valid SpeciesRecordDTO dto) {
+		Optional<SpeciesModel> species = repository.findById(id);
+		if (species.isEmpty())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Species not found");
+		var speciesModel = species.get();
+		BeanUtils.copyProperties(dto, speciesModel);
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(speciesModel));
 	}
 }
