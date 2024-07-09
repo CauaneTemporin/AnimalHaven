@@ -28,16 +28,7 @@ public class ShelterModel implements Serializable{
     @Column(nullable = false)
     private int capacity;
 
-    public ShelterModel(UUID id, String name, String address, String phoneNumber, int capacity) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.capacity = capacity;
-    }
-
-    // Getters and setters
-    public UUID getId() {
+        public UUID getId() {
         return id;
     }
 
