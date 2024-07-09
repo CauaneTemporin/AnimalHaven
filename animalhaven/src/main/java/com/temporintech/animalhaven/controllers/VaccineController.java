@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +41,7 @@ public class VaccineController {
 	public ResponseEntity<List<VaccineModel>> getAllVaccine() {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getOneVaccine(@PathVariable(value = "id") UUID id) {
 		Optional<VaccineModel> vaccine = repository.findById(id);
@@ -49,7 +50,7 @@ public class VaccineController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(vaccine.get());
 	}
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateVaccine(@PathVariable(value = "id") UUID id,
 			@RequestBody @Valid VaccineRecordDTO dto) {
@@ -61,6 +62,14 @@ public class VaccineController {
 		BeanUtils.copyProperties(dto, vaccineModel);
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(vaccineModel));
 	}
-	
 
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Object> deleteVaccine(@PathVariable(value = "id") UUID id) {
+		Optional<VaccineModel> vaccine = repository.findById(id);
+		if (vaccine.isEmpty())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaccine not found.");
+
+		repository.delete(vaccine.get());
+		return ResponseEntity.status(HttpStatus.OK).body("Vaccine deleted successfully.");
+	}
 }
