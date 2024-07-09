@@ -25,7 +25,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/animal")
-public class Animalcontroller {
+public class AnimalController {
 
 	@Autowired
 	AnimalRepository repository;
@@ -35,7 +35,7 @@ public class Animalcontroller {
 		var model = new AnimalModel();
 		BeanUtils.copyProperties(dto, model);
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
-	}
+	} 
 
 	@GetMapping
 	public ResponseEntity<List<AnimalModel>> getAllAnimal() {
