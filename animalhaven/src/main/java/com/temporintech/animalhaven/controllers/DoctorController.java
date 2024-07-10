@@ -1,9 +1,12 @@
 package com.temporintech.animalhaven.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,4 +30,9 @@ public class DoctorController {
 		BeanUtils.copyProperties(dto, model);
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
 	} 
+	
+	@GetMapping
+	public ResponseEntity<List<DoctorModel>> getAllDoctor() {
+		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+	}
 }
