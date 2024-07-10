@@ -69,5 +69,4 @@ public class DoctorController {
 		repository.delete(doctor.get());
 		return ResponseEntity.status(HttpStatus.OK).body("Doctor deleted successfully.");
 	}
-s
 }
