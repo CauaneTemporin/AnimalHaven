@@ -11,11 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.temporintech.animalhaven.dtos.AnimalRecordDTO;
+import com.temporintech.animalhaven.dtos.DoctorRecordDTO;
 import com.temporintech.animalhaven.model.DoctorModel;
 import com.temporintech.animalhaven.repositories.DoctorRepository;
 
@@ -45,5 +47,16 @@ public class DoctorController {
 		if (doctor.isEmpty())
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found.");
 		return ResponseEntity.status(HttpStatus.OK).body(doctor.get());
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateDoctor(@PathVariable(value = "id") UUID id,
+			@RequestBody @Valid DoctorRecordDTO dto) {
+		Optional<DoctorModel> doctor = repository.findById(id);
+		if (doctor.isEmpty())
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found.");
+		var animalModel = doctor.get();
+		BeanUtils.copyProperties(dto, animalModel);
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(animalModel));
 	}
 }
