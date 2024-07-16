@@ -54,6 +54,10 @@ public class AnimalModel implements Serializable {
 	@JoinColumn(name = "species_id", nullable = false)
 	private SpeciesModel species;
 
+	@ManyToOne
+	@JoinColumn(name = "shelter_id", nullable = false)
+	private ShelterModel shelter;
+
 	public UUID getId() {
 		return id;
 	}
@@ -140,5 +144,13 @@ public class AnimalModel implements Serializable {
 
 	public void setSpecies(SpeciesModel species) {
 		this.species = species;
+	}
+
+	public ShelterModel getShelter() {
+		return shelter;
+	}
+
+	public void setShelter(ShelterModel shelter) {
+		this.shelter = shelter;
 	}
 }
