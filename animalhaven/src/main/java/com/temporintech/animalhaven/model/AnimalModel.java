@@ -58,6 +58,10 @@ public class AnimalModel implements Serializable {
 	@JoinColumn(name = "shelter_id", nullable = false)
 	private ShelterModel shelter;
 
+	@ManyToOne
+	@JoinColumn(name = "card_id", nullable = false)
+	private VaccinationCardModel card;
+
 	public UUID getId() {
 		return id;
 	}
@@ -152,5 +156,13 @@ public class AnimalModel implements Serializable {
 
 	public void setShelter(ShelterModel shelter) {
 		this.shelter = shelter;
+	}
+
+	public VaccinationCardModel getCard() {
+		return card;
+	}
+
+	public void setCard(VaccinationCardModel card) {
+		this.card = card;
 	}
 }
