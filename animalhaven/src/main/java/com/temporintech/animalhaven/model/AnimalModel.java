@@ -51,15 +51,15 @@ public class AnimalModel implements Serializable {
 	private boolean castrated;
 
 	@ManyToOne
-	@JoinColumn(name = "species_id", nullable = false)
+	@JoinColumn(name = "species_id")
 	private SpeciesModel species;
 
 	@ManyToOne
-	@JoinColumn(name = "shelter_id", nullable = false)
+	@JoinColumn(name = "shelter_id")
 	private ShelterModel shelter;
 
 	@ManyToOne
-	@JoinColumn(name = "card_id", nullable = false)
+	@JoinColumn(name = "card_id")
 	private VaccinationCardModel card;
 
 	public UUID getId() {
