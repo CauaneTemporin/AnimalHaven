@@ -28,8 +28,6 @@ public class VaccineModel implements Serializable{
     private String manufacturer;
     @Column(nullable = false)
     private String lotNumber;
-    @Column(nullable = false)
-    private String responsibleVeterinarian;
     
 	public UUID getId() {
 		return id;
@@ -60,11 +58,5 @@ public class VaccineModel implements Serializable{
 	}
 	public void setLotNumber(String lotNumber) {
 		this.lotNumber = lotNumber;
-	}
-	public String getResponsibleVeterinarian() {
-		return responsibleVeterinarian;
-	}
-	public void setResponsibleVeterinarian(String responsibleVeterinarian) {
-		this.responsibleVeterinarian = responsibleVeterinarian;
 	}
 }
