@@ -31,7 +31,7 @@ public class VaccineController {
 	VaccineRepository repository;
 
 	@PostMapping
-	public ResponseEntity<VaccineModel> saveVaccine(@RequestBody @Valid VaccineModel dto) {
+	public ResponseEntity<VaccineModel> saveVaccine(@RequestBody @Valid VaccineRecordDTO dto) {
 		var model = new VaccineModel();
 		BeanUtils.copyProperties(dto, model);
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));

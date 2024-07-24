@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,12 +24,18 @@ public class VaccineModel implements Serializable{
 	private UUID id;
 	@Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private Date applicationDate;
+	@Column(nullable = false)
+	private String dose;
     @Column(nullable = false)
     private String manufacturer;
     @Column(nullable = false)
     private String lotNumber;
+    @Column(nullable = false)
+	private String observation;
+    
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private DoctorModel doctor;
     
 	public UUID getId() {
 		return id;
@@ -41,11 +49,11 @@ public class VaccineModel implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getApplicationDate() {
-		return applicationDate;
+	public String getDose() {
+		return dose;
 	}
-	public void setApplicationDate(Date applicationDate) {
-		this.applicationDate = applicationDate;
+	public void setDose(String dose) {
+		this.dose = dose;
 	}
 	public String getManufacturer() {
 		return manufacturer;
@@ -58,5 +66,17 @@ public class VaccineModel implements Serializable{
 	}
 	public void setLotNumber(String lotNumber) {
 		this.lotNumber = lotNumber;
+	}
+	public String getObservation() {
+		return observation;
+	}
+	public void setObservation(String observation) {
+		this.observation = observation;
+	}
+	public DoctorModel getDoctor() {
+		return doctor;
+	}
+	public void setDoctor(DoctorModel doctor) {
+		this.doctor = doctor;
 	}
 }
