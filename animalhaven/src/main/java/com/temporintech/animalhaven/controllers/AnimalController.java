@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.temporintech.animalhaven.dtos.AnimalRecordDTO;
 import com.temporintech.animalhaven.model.AnimalModel;
+import com.temporintech.animalhaven.model.VaccineModel;
 import com.temporintech.animalhaven.repositories.AnimalRepository;
+import com.temporintech.animalhaven.repositories.ShelterRepository;
+import com.temporintech.animalhaven.repositories.SpeciesRepository;
+import com.temporintech.animalhaven.repositories.VaccineRepository;
 
 import jakarta.validation.Valid;
 
@@ -29,11 +33,25 @@ public class AnimalController {
 
 	@Autowired
 	AnimalRepository repository;
+	
+	@Autowired
+    private SpeciesRepository speciesRepository;
+
+    @Autowired
+    private ShelterRepository shelterRepository;
+
+    @Autowired
+    private VaccineRepository vaccineRepository;
 
 	@PostMapping
 	public ResponseEntity<AnimalModel> saveAnimal(@RequestBody @Valid AnimalRecordDTO dto) {
 		var model = new AnimalModel();
 		BeanUtils.copyProperties(dto, model);
+        speciesRepository.findById(dto.speciesId()).ifPresent(model::setSpecies);
+        shelterRepository.findById(dto.shelterId()).ifPresent(model::setShelter);
+        List<VaccineModel> vaccines = vaccineRepository.findAllById(dto.vaccineId());
+        model.setVaccine(vaccines);
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
 	} 
 
