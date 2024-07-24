@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Buddy",
+    "age": 5,
+    "gender": "MALE",
+    "weight": 12.5,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-23",
+    "description": "Friendly and energetic.",
+    "status": "AVAILABLE",
+    "castrated": true,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "8385bf5b-ef30-4c2b-96ad-7fc6aa2d33fc",
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  },
+  {
+    "name": "Luna",
+    "age": 3,
+    "gender": "FEMALE",
+    "weight": 8.3,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-24",
+    "description": "Loves to cuddle.",
+    "status": "ADOPTED",
+    "castrated": true,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  },
+  {
+    "name": "Max",
+    "age": 4,
+    "gender": "MALE",
+    "weight": 10.2,
+    "health": "SICK",
+    "dateEntered": "2023-07-25",
+    "description": "Energetic and playful.",
+    "status": "AVAILABLE",
+    "castrated": false,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "8385bf5b-ef30-4c2b-96ad-7fc6aa2d33fc"
+    ]
+  },
+  {
+    "name": "Bella",
+    "age": 2,
+    "gender": "FEMALE",
+    "weight": 6.7,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-26",
+    "description": "Very curious.",
+    "status": "AVAILABLE",
+    "castrated": false,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "8385bf5b-ef30-4c2b-96ad-7fc6aa2d33fc",
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  },
+  {
+    "name": "Charlie",
+    "age": 6,
+    "gender": "MALE",
+    "weight": 14.0,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-27",
+    "description": "Very friendly.",
+    "status": "AVAILABLE",
+    "castrated": true,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  },
+  {
+    "name": "Lucy",
+    "age": 1,
+    "gender": "FEMALE",
+    "weight": 4.9,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-28",
+    "description": "Very playful.",
+    "status": "AVAILABLE",
+    "castrated": false,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "8385bf5b-ef30-4c2b-96ad-7fc6aa2d33fc"
+    ]
+  },
+ {
+    "name": "Lucy",
+    "age": 1,
+    "gender": "FEMALE",
+    "weight": 4.9,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-28",
+    "description": "Very playful.",
+    "status": "AVAILABLE",
+    "castrated": false,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "8385bf5b-ef30-4c2b-96ad-7fc6aa2d33fc"
+    ]
+  },
+  {
+    "name": "Rocky",
+    "age": 7,
+    "gender": "MALE",
+    "weight": 15.3,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-29",
+    "description": "Loves to run.",
+    "status": "AVAILABLE",
+    "castrated": true,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  },
+  {
+    "name": "Molly",
+    "age": 3,
+    "gender": "FEMALE",
+    "weight": 8.0,
+    "health": "SICK",
+    "dateEntered": "2023-07-30",
+    "description": "Needs medical attention.",
+    "status": "AVAILABLE",
+    "castrated": false,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "8385bf5b-ef30-4c2b-96ad-7fc6aa2d33fc",
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  },
+  {
+    "name": "Daisy",
+    "age": 4,
+    "gender": "FEMALE",
+    "weight": 9.1,
+    "health": "HEALTHY",
+    "dateEntered": "2023-07-31",
+    "description": "Very affectionate.",
+    "status": "AVAILABLE",
+    "castrated": true,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  },
+  {
+    "name": "Bailey",
+    "age": 2,
+    "gender": "MALE",
+    "weight": 7.2,
+    "health": "HEALTHY",
+    "dateEntered": "2023-08-01",
+    "description": "Loves to play fetch.",
+    "status": "AVAILABLE",
+    "castrated": false,
+    "speciesId": "44281a20-acfa-40b0-882d-9d5ae585c6a8",
+    "shelterId": "e55e1232-2ed9-495f-9091-8634cab106fc",
+    "vaccineId": [
+      "8385bf5b-ef30-4c2b-96ad-7fc6aa2d33fc",
+      "f4a7814a-3063-434d-88a4-a1d4eb929910"
+    ]
+  }
+]

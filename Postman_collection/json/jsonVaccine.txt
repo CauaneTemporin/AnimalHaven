@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Vacina contra raiva",
+        "dose": "1º Dose",
+        "manufacturer": "Vacinas Inc.",
+        "lotNumber": "RV20240715",
+        "observation": "Sem reação",
+        "doctor": {
+            "id": "b4023bb1-790a-41d7-8e0f-17e743137d70"
+        }
+    },
+    {
+        "name": "Vacina contra cinomose",
+        "dose": "1º Dose",
+        "manufacturer": "AnimalHealth Co.",
+        "lotNumber": "CC20240718",
+        "observation": "Sem reação",
+        "doctor": {
+            "id": "b4023bb1-790a-41d7-8e0f-17e743137d70"
+        }
+    },
+    {
+        "name": "Vacina contra parvovirose",
+        "dose": "1º Dose",
+        "manufacturer": "VetCare Ltd.",
+        "lotNumber": "PV20240720",
+        "observation": "Sem reação",
+        "doctor": {
+            "id": "d0e1fe1f-881b-4b1f-9c3c-aee7ce22743f"
+        }
+    },
+    {
+        "name": "Vacina contra leptospirose",
+        "dose": "1º Dose",
+        "manufacturer": "BioVaccine Inc.",
+        "lotNumber": "LE20240722",
+        "observation": "Sem reação",
+        "doctor": {
+            "id": "b4023bb1-790a-41d7-8e0f-17e743137d70"
+        }
+    },
+    {
+        "name": "Vacina contra tosse dos canis",
+        "dose": "1º Dose",
+        "manufacturer": "PetPharma Ltd.",
+        "lotNumber": "TC20240725",
+        "observation": "Sem reação",
+        "doctor": {
+            "id": "d0e1fe1f-881b-4b1f-9c3c-aee7ce22743f"
+        }
+    }
+]

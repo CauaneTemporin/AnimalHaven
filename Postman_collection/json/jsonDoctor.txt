@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Dr. Ana Souza",
+        "specialization": "Veterinária",
+        "status": "ACTIVE"
+    },
+    {
+        "name": "Dr. Carlos Silva",
+        "specialization": "Clínica Geral",
+        "status": "ACTIVE"
+    },
+    {
+        "name": "Dra. Laura Almeida",
+        "specialization": "Oftalmologia",
+        "status": "INACTIVE"
+    },
+    {
+        "name": "Dr. Pedro Costa",
+        "specialization": "Cardiologia",
+        "status": "ACTIVE"
+    },
+    {
+        "name": "Dra. Juliana Mendes",
+        "specialization": "Cirurgia",
+        "status": "INACTIVE"
+    }
+]

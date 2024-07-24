@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Labrador Retriever"
+  },
+  {
+    "name": "German Shepherd"
+  },
+  {
+    "name": "Golden Retriever"
+  },
+  {
+    "name": "Bulldog"
+  },
+  {
+    "name": "Beagle"
+  },
+  {
+    "name": "Poodle"
+  },
+  {
+    "name": "Boxer"
+  },
+  {
+    "name": "Dachshund"
+  },
+  {
+    "name": "Yorkshire Terrier"
+  },
+  {
+    "name": "Rottweiler"
+  }
+]

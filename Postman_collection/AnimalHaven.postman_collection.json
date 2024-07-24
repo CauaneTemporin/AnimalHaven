@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "7a6b12bc-08c0-4628-aac4-a7435d9d961a",
+		"name": "AnimalHaven",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "22057198"
+	},
+	"item": [
+		{
+			"name": "Animal",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Charlie\",\r\n    \"age\": 6,\r\n    \"gender\": \"MALE\",\r\n    \"weight\": 14.0,\r\n    \"health\": \"HEALTHY\",\r\n    \"dateEntered\": \"2023-07-27\",\r\n    \"description\": \"Very friendly.\",\r\n    \"status\": \"AVAILABLE\",\r\n    \"castrated\": true,\r\n    \"speciesId\": \"44281a20-acfa-40b0-882d-9d5ae585c6a8\",\r\n    \"shelterId\": \"e55e1232-2ed9-495f-9091-8634cab106fc\",\r\n    \"vaccineId\": [\r\n      \"f4a7814a-3063-434d-88a4-a1d4eb929910\"\r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/animal"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/animal"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Charlie\",\r\n        \"age\": 2,\r\n        \"gender\": \"MALE\",\r\n        \"weight\": 14.0,\r\n        \"health\": \"HEALTHY\",\r\n        \"dateEntered\": \"2023-07-26\",\r\n        \"description\": \"Very friendly.\",\r\n        \"status\": \"AVAILABLE\",\r\n        \"castrated\": true,\r\n        \"species\": {\r\n            \"id\": \"44281a20-acfa-40b0-882d-9d5ae585c6a8\",\r\n            \"name\": \"Boxer\"\r\n        },\r\n        \"shelter\": {\r\n            \"id\": \"e55e1232-2ed9-495f-9091-8634cab106fc\",\r\n            \"name\": \"Happy Tails Shelter\",\r\n            \"address\": \"123 Main Street\",\r\n            \"phoneNumber\": \"(555) 123-4567\",\r\n            \"capacity\": 50\r\n        },\r\n        \"vaccine\": [\r\n            {\r\n                \"id\": \"f4a7814a-3063-434d-88a4-a1d4eb929910\",\r\n                \"name\": \"Vacina contra cinomose\",\r\n                \"dose\": \"1º Dose\",\r\n                \"manufacturer\": \"AnimalHealth Co.\",\r\n                \"lotNumber\": \"CC20240718\",\r\n                \"observation\": \"Sem reação\",\r\n                \"doctor\": {\r\n                    \"id\": \"5c2936a6-ff02-4cd6-a5d6-9b9bd5d7222c\",\r\n                    \"name\": \"Dr. Carlos Silva\",\r\n                    \"specialization\": \"Clínica Geral\",\r\n                    \"status\": \"ACTIVE\"\r\n                }\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/animal/a479fdcb-85bd-49ed-a127-3114adb878bb"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/animal/fa7eada5-8af9-4672-a1aa-e7498f0df4cd"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/animal/a479fdcb-85bd-49ed-a127-3114adb878bb"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shelter",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Angel Paws Rescue\",\r\n    \"address\": \"890 Cedar Road\",\r\n    \"phoneNumber\": \"(555) 432-1098\",\r\n    \"capacity\": 55\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/shelter"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/shelter"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Loving Paws Sanctuary\",\r\n        \"address\": \"123 Cedar LaneSSSS\",\r\n        \"phoneNumber\": \"(555) 567-8901\",\r\n        \"capacity\": 55\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/shelter/077455c3-0138-479d-8843-be2a4fcf30ac"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/shelter/077455c3-0138-479d-8843-be2a4fcf30ac"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/shelter/bc04b251-b5ee-423f-8e7e-30c4ff84afa4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Species",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "},\r\n  {\r\n    \"name\": \"Yorkshire Terrier\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/species"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/species"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Rottweiler\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/species/a9cdd22d-a35d-4f23-b951-7a3aeadadca6"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/species/a9cdd22d-a35d-4f23-b951-7a3aeadadca6"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/species/715483cc-6071-4da4-b58e-663023dc4281"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vaccine",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"name\": \"Vacina contra leptospirose\",\r\n        \"dose\": \"1º Dose\",\r\n        \"manufacturer\": \"BioVaccine Inc.\",\r\n        \"lotNumber\": \"LE20240722\",\r\n        \"observation\": \"Sem reação\",\r\n        \"doctor\": {\r\n            \"id\": \"18a04cf8-b1b5-460f-8623-c1cf465a0400\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/vaccine"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/vaccine"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"name\": \"Vacina contra leptospirose\",\r\n        \"dose\": \"1º Dose\",\r\n        \"manufacturer\": \"BioVaccine Inc.\",\r\n        \"lotNumber\": \"LE20240722\",\r\n        \"observation\": \"Sem reação\",\r\n        \"doctor\": {\r\n            \"id\": \"18a04cf8-b1b5-460f-8623-c1cf465a0400\"\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/vaccine/7cb2e2f7-c34e-4d08-9579-6cd6d5cafa9d"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/vaccine/7cb2e2f7-c34e-4d08-9579-6cd6d5cafa9d"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/vaccine/7cb2e2f7-c34e-4d08-9579-6cd6d5cafa9d"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Dr. Ana Souza\",\r\n        \"specialization\": \"Veterinária\",\r\n        \"status\": \"ACTIVE\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/doctor"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/doctor"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"name\": \"Dra. Laura Almeidsssa\",\r\n        \"specialization\": \"Oftalmologia\",\r\n        \"status\": \"INACTIVE\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/doctor/67658ba7-7001-4356-9ce4-36f8fc7ca90d"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/doctor/67658ba7-7001-4356-9ce4-36f8fc7ca90d"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ONE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/vaccine/3e7b6f79-d4d1-4259-bf24-f9eb07fa6f86"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

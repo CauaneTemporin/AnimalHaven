@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Happy Tails Shelter",
+    "address": "123 Main Street",
+    "phoneNumber": "(555) 123-4567",
+    "capacity": 50
+  },
+  {
+    "name": "Forever Home Animal Rescue",
+    "address": "456 Oak Avenue",
+    "phoneNumber": "(555) 987-6543",
+    "capacity": 30
+  },
+  {
+    "name": "Paws and Claws Sanctuary",
+    "address": "789 Maple Drive",
+    "phoneNumber": "(555) 234-5678",
+    "capacity": 40
+  },
+  {
+    "name": "Safe Haven Shelter",
+    "address": "321 Elm Court",
+    "phoneNumber": "(555) 876-5432",
+    "capacity": 60
+  },
+  {
+    "name": "Rescue Me Shelter",
+    "address": "567 Pine Lane",
+    "phoneNumber": "(555) 345-6789",
+    "capacity": 35
+  },
+  {
+    "name": "Angel Paws Rescue",
+    "address": "890 Cedar Road",
+    "phoneNumber": "(555) 432-1098",
+    "capacity": 55
+  },
+  {
+    "name": "Second Chance Shelter",
+    "address": "234 Willow Street",
+    "phoneNumber": "(555) 678-9012",
+    "capacity": 25
+  },
+  {
+    "name": "Furry Friends Haven",
+    "address": "789 Birch Avenue",
+    "phoneNumber": "(555) 321-9876",
+    "capacity": 45
+  },
+  {
+    "name": "Homeless Pets Refuge",
+    "address": "456 Spruce Lane",
+    "phoneNumber": "(555) 890-1234",
+    "capacity": 50
+  },
+  {
+    "name": "Loving Paws Sanctuary",
+    "address": "123 Cedar Lane",
+    "phoneNumber": "(555) 567-8901",
+    "capacity": 40
+  }
+]
