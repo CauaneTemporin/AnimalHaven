@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.temporintech.animalhaven.dtos.AnimalRecordDTO;
 import com.temporintech.animalhaven.dtos.DoctorRecordDTO;
 import com.temporintech.animalhaven.model.DoctorModel;
 import com.temporintech.animalhaven.repositories.DoctorRepository;
@@ -31,7 +30,7 @@ public class DoctorController {
 	DoctorRepository repository;
 
 	@PostMapping
-	public ResponseEntity<DoctorModel> saveDoctor(@RequestBody @Valid AnimalRecordDTO dto) {
+	public ResponseEntity<DoctorModel> saveDoctor(@RequestBody @Valid DoctorRecordDTO dto) {
 		var model = new DoctorModel();
 		BeanUtils.copyProperties(dto, model);
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
