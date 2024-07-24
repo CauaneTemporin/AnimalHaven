@@ -2,6 +2,8 @@ package com.temporintech.animalhaven.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.temporintech.animalhaven.enums.animal.Gender;
@@ -16,6 +18,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -58,10 +62,14 @@ public class AnimalModel implements Serializable {
 	@JoinColumn(name = "shelter_id")
 	private ShelterModel shelter;
 
-	@ManyToOne
-	@JoinColumn(name = "card_id")
-	private VaccinationCardModel card;
-
+	@ManyToMany
+    @JoinTable(
+        name = "animal_vaccine",
+        joinColumns = @JoinColumn(name = "animal_id"),
+        inverseJoinColumns = @JoinColumn(name = "vaccine_id")
+    )
+    private List<VaccineModel> vaccine = new ArrayList<>();
+	
 	public UUID getId() {
 		return id;
 	}
@@ -158,11 +166,11 @@ public class AnimalModel implements Serializable {
 		this.shelter = shelter;
 	}
 
-	public VaccinationCardModel getCard() {
-		return card;
+	public List<VaccineModel> getVaccine() {
+		return vaccine;
 	}
 
-	public void setCard(VaccinationCardModel card) {
-		this.card = card;
+	public void setVaccine(List<VaccineModel> vaccine) {
+		this.vaccine = vaccine;
 	}
 }
