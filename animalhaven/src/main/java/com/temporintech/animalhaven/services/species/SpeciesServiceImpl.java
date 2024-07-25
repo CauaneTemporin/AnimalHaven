@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
 import com.temporintech.animalhaven.model.SpeciesModel;
@@ -13,8 +14,6 @@ import com.temporintech.animalhaven.repositories.SpeciesRepository;
 import com.temporintech.animalhaven.services.animal.AnimalService;
 import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class SpeciesServiceImpl implements SpeciesService {
