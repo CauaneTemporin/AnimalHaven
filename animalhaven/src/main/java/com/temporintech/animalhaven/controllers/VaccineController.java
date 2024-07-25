@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.temporintech.animalhaven.dtos.VaccineRecordDTO;
 import com.temporintech.animalhaven.model.VaccineModel;
 import com.temporintech.animalhaven.repositories.VaccineRepository;
+import com.temporintech.animalhaven.services.vaccine.VaccineService;
+import com.temporintech.animalhaven.services.vaccine.VaccineServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -28,48 +30,32 @@ import jakarta.validation.Valid;
 public class VaccineController {
 
 	@Autowired
-	VaccineRepository repository;
+	VaccineServiceImpl service;
 
 	@PostMapping
 	public ResponseEntity<VaccineModel> saveVaccine(@RequestBody @Valid VaccineRecordDTO dto) {
-		var model = new VaccineModel();
-		BeanUtils.copyProperties(dto, model);
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
 	}
 
 	@GetMapping
 	public ResponseEntity<List<VaccineModel>> getAllVaccine() {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getOneVaccine(@PathVariable(value = "id") UUID id) {
-		Optional<VaccineModel> vaccine = repository.findById(id);
-		if (vaccine.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaccine not found.");
-
-		return ResponseEntity.status(HttpStatus.OK).body(vaccine.get());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateVaccine(@PathVariable(value = "id") UUID id,
 			@RequestBody @Valid VaccineRecordDTO dto) {
-		Optional<VaccineModel> vaccine = repository.findById(id);
-		if (vaccine.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaccine not found.");
-
-		var vaccineModel = vaccine.get();
-		BeanUtils.copyProperties(dto, vaccineModel);
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(vaccineModel));
+		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteVaccine(@PathVariable(value = "id") UUID id) {
-		Optional<VaccineModel> vaccine = repository.findById(id);
-		if (vaccine.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaccine not found.");
-
-		repository.delete(vaccine.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Vaccine deleted successfully.");
+	public ResponseEntity<Void> deleteVaccine(@PathVariable(value = "id") UUID id) {
+		service.delete(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }
