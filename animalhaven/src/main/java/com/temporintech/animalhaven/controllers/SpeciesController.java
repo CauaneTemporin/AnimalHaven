@@ -52,7 +52,8 @@ public class SpeciesController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteSpecies(@PathVariable(value = "id") UUID id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.delete(id));
+	public ResponseEntity<Void> deleteSpecies(@PathVariable(value = "id") UUID id) {
+		service.delete(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

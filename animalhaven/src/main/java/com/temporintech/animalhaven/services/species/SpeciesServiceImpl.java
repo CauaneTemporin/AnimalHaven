@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
 import com.temporintech.animalhaven.model.SpeciesModel;
 import com.temporintech.animalhaven.repositories.SpeciesRepository;
+import com.temporintech.animalhaven.services.animal.AnimalService;
+import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -17,38 +19,46 @@ import jakarta.transaction.Transactional;
 @Service
 public class SpeciesServiceImpl implements SpeciesService {
 
-    @Autowired
-    private SpeciesRepository repository;
+	@Autowired
+	private SpeciesRepository repository;
 
-    @Transactional
-    public SpeciesModel save(SpeciesRecordDTO dto) {
-        var model = new SpeciesModel();
-        BeanUtils.copyProperties(dto, model);
-        return repository.save(model);
-    }
+	@Autowired
+	private AnimalService animalService;
 
-    @Transactional
-    public SpeciesModel update(UUID id, SpeciesRecordDTO dto) {
-        var speciesModel = repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Species not found"));
-        BeanUtils.copyProperties(dto, speciesModel);
-        return repository.save(speciesModel);
-    }
+	@Transactional
+	public SpeciesModel save(SpeciesRecordDTO dto) {
+		var model = new SpeciesModel();
+		BeanUtils.copyProperties(dto, model);
+		return repository.save(model);
+	}
 
-    public List<SpeciesModel> findAll() {
-        return repository.findAll();
-    }
+	@Transactional
+	public SpeciesModel update(UUID id, SpeciesRecordDTO dto) {
+		var speciesModel = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Species with ID " + id + " not found"));
+		BeanUtils.copyProperties(dto, speciesModel);
+		return repository.save(speciesModel);
+	}
 
-    public SpeciesModel findById(UUID id) {
-        return repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Species not found"));
-    }
+	public List<SpeciesModel> findAll() {
+		return repository.findAll();
+	}
 
-    @Transactional
-    public SpeciesModel delete(UUID id) {
-        var speciesModel = repository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("Species not found"));
-        repository.delete(speciesModel);
-        return speciesModel;
-    }
+	public SpeciesModel findById(UUID id) {
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Species not found"));
+	}
+
+	@Transactional
+	public void delete(UUID id) {
+		SpeciesModel speciesModel = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Species with ID " + id + " not found"));
+
+		boolean isAssociated = animalService.existsBySpeciesId(id);
+		if (isAssociated) {
+			throw new AssociationException("Species with ID " + id + " is associated with one or more animals");
+		}
+
+		repository.delete(speciesModel);
+	}
+
 }

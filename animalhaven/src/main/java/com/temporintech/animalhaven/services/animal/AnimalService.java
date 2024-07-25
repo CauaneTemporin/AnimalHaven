@@ -1,18 +1,11 @@
 package com.temporintech.animalhaven.services.animal;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.UUID;
 
-import com.temporintech.animalhaven.model.AnimalModel;
-import com.temporintech.animalhaven.repositories.AnimalRepository;
+import org.springframework.stereotype.Service;
 
-public class AnimalService {
-	
-	@Autowired
-	AnimalRepository animalRepository;
+@Service
+public interface AnimalService {
 
-	@Transactional(readOnly = true)
-	public AnimalModel save(AnimalModel animalModel) {
-		return animalRepository.save(animalModel);
-	}
+	boolean existsBySpeciesId(UUID speciesId);
 }

@@ -19,5 +19,5 @@ public interface SpeciesService {
 
 	SpeciesModel findById(UUID id);
 
-	Object delete(UUID id);
+	void delete(UUID id);
 }
