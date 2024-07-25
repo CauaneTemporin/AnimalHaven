@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
 import com.temporintech.animalhaven.model.SpeciesModel;
-import com.temporintech.animalhaven.repositories.SpeciesRepository;
+import com.temporintech.animalhaven.services.species.SpeciesServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -28,46 +28,31 @@ import jakarta.validation.Valid;
 public class SpeciesController {
 
 	@Autowired
-	SpeciesRepository repository;
+	SpeciesServiceImpl service;
 
 	@PostMapping
 	public ResponseEntity<SpeciesModel> saveSpecies(@RequestBody @Valid SpeciesRecordDTO dto) {
-		var model = new SpeciesModel();
-		BeanUtils.copyProperties(dto, model);
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
 	}
 
 	@GetMapping
 	public ResponseEntity<List<SpeciesModel>> getAllSpecies() {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getOneSpecies(@PathVariable(value = "id") UUID id) {
-		Optional<SpeciesModel> species = repository.findById(id);
-		if (species.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Species not found");
-
-		return ResponseEntity.status(HttpStatus.OK).body(species.get());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateSpecies(@PathVariable(value = "id") UUID id,
 			@RequestBody @Valid SpeciesRecordDTO dto) {
-		Optional<SpeciesModel> species = repository.findById(id);
-		if (species.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Species not found");
-		var speciesModel = species.get();
-		BeanUtils.copyProperties(dto, speciesModel);
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(speciesModel));
+		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deleteSpecies(@PathVariable(value = "id") UUID id) {
-		Optional<SpeciesModel> species = repository.findById(id);
-		if (species.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Species not found.");
-		repository.delete(species.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Species deleted successfully.");
+		return ResponseEntity.status(HttpStatus.OK).body(service.delete(id));
 	}
 }
