@@ -1,10 +1,8 @@
 package com.temporintech.animalhaven.controllers;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.temporintech.animalhaven.dtos.ShelterRecordDTO;
 import com.temporintech.animalhaven.model.ShelterModel;
-import com.temporintech.animalhaven.repositories.ShelterRepository;
+import com.temporintech.animalhaven.services.shelter.ShelterServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -28,47 +26,32 @@ import jakarta.validation.Valid;
 public class ShelterController {
 
 	@Autowired
-	ShelterRepository repository;
+	ShelterServiceImpl service;
 
 	@PostMapping
 	public ResponseEntity<ShelterModel> saveShelter(@RequestBody @Valid ShelterRecordDTO dto) {
-		var model = new ShelterModel();
-		BeanUtils.copyProperties(dto, model);
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
 	}
 
 	@GetMapping
 	public ResponseEntity<List<ShelterModel>> getAllShelter() {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getOneShelter(@PathVariable(value = "id") UUID id) {
-		Optional<ShelterModel> shelter = repository.findById(id);
-		if (shelter.isEmpty())
-			return ResponseEntity.status(HttpStatus.OK).body(shelter.get());
-
-		return ResponseEntity.status(HttpStatus.OK).body(shelter.get());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateShelter(@PathVariable(value = "id") UUID id,
 			@RequestBody @Valid ShelterRecordDTO dto) {
-		Optional<ShelterModel> shelter = repository.findById(id);
-		if (shelter.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Shelter not found");
-		var shelterModel = shelter.get();
-		BeanUtils.copyProperties(dto, shelterModel);
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(shelterModel));
+		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteShelter(@PathVariable(value = "id") UUID id) {
-		Optional<ShelterModel> shelter = repository.findById(id);
-
-		if (shelter.isEmpty())
-			return ResponseEntity.status(HttpStatus.OK).body("Shelter not found");
-		repository.delete(shelter.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Shelter deleted successfully");
+	public ResponseEntity<Void> deleteShelter(@PathVariable(value = "id") UUID id) {
+		service.delete(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }
