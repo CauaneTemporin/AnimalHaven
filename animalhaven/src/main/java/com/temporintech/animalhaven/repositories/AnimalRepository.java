@@ -11,4 +11,7 @@ import com.temporintech.animalhaven.model.AnimalModel;
 public interface AnimalRepository extends JpaRepository<AnimalModel, UUID>{
 
     boolean existsBySpeciesId(UUID speciesId);
+    
+    boolean existsByShelterId(UUID shelterId);
+
 }
