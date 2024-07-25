@@ -55,7 +55,7 @@ public class DoctorServiceImpl implements DoctorService {
 
 		boolean isAssociated = service.existsByDoctorId(id);
 		if (isAssociated) {
-			throw new AssociationException("Doctor with ID " + id + " is associated with one or more animals");
+			throw new AssociationException("Doctor with ID " + id + " is associated with one or more vaccine");
 		}
 
 		repository.delete(doctorModel);
