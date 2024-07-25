@@ -1,10 +1,8 @@
 package com.temporintech.animalhaven.controllers;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,53 +17,41 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.temporintech.animalhaven.dtos.DoctorRecordDTO;
 import com.temporintech.animalhaven.model.DoctorModel;
-import com.temporintech.animalhaven.repositories.DoctorRepository;
+import com.temporintech.animalhaven.services.doctor.DoctorService;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/doctor")
 public class DoctorController {
+	
 	@Autowired
-	DoctorRepository repository;
+	DoctorService service;
 
 	@PostMapping
 	public ResponseEntity<DoctorModel> saveDoctor(@RequestBody @Valid DoctorRecordDTO dto) {
-		var model = new DoctorModel();
-		BeanUtils.copyProperties(dto, model);
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(model));
-	} 
-	
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
+	}
+
 	@GetMapping
 	public ResponseEntity<List<DoctorModel>> getAllDoctor() {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getOneDoctor(@PathVariable(value = "id") UUID id) {
-		Optional<DoctorModel> doctor = repository.findById(id);
-		if (doctor.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found.");
-		return ResponseEntity.status(HttpStatus.OK).body(doctor.get());
+		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateDoctor(@PathVariable(value = "id") UUID id,
 			@RequestBody @Valid DoctorRecordDTO dto) {
-		Optional<DoctorModel> doctor = repository.findById(id);
-		if (doctor.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found.");
-		var animalModel = doctor.get();
-		BeanUtils.copyProperties(dto, animalModel);
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(animalModel));
+		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteDoctor(@PathVariable(value = "id") UUID id) {
-		Optional<DoctorModel> doctor = repository.findById(id);
-		if (doctor.isEmpty())
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Doctor not found.");
-		repository.delete(doctor.get());
-		return ResponseEntity.status(HttpStatus.OK).body("Doctor deleted successfully.");
+	public ResponseEntity<Void> deleteDoctor(@PathVariable(value = "id") UUID id) {
+		service.delete(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }
