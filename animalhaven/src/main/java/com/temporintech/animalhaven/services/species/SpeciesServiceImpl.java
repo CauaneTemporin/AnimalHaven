@@ -45,7 +45,7 @@ public class SpeciesServiceImpl implements SpeciesService {
 	}
 
 	public SpeciesModel findById(UUID id) {
-		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Species not found"));
+		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Species with ID " + id + " not found"));
 	}
 
 	@Transactional
