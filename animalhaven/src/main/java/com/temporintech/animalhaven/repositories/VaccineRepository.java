@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.temporintech.animalhaven.model.VaccineModel;
 
 @Repository
-public interface VaccineRepository extends JpaRepository<VaccineModel, UUID>{
+public interface VaccineRepository extends JpaRepository<VaccineModel, UUID> {
+	
+	boolean existsByDoctorId(UUID doctorId);
 
 }
