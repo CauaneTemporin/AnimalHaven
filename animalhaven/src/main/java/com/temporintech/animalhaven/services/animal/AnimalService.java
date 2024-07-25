@@ -10,4 +10,6 @@ public interface AnimalService {
 	boolean existsBySpeciesId(UUID speciesId);
 	
     boolean existsByShelterId(UUID shelterId);
+    
+    boolean existsByVaccineId(UUID vaccineId);
 }

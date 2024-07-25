@@ -13,5 +13,7 @@ public interface AnimalRepository extends JpaRepository<AnimalModel, UUID>{
     boolean existsBySpeciesId(UUID speciesId);
     
     boolean existsByShelterId(UUID shelterId);
+    
+    boolean existsByVaccineId(UUID vaccineId);
 
 }

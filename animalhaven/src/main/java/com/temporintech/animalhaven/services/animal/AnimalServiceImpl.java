@@ -23,4 +23,9 @@ public class AnimalServiceImpl implements AnimalService {
 	public boolean existsByShelterId(UUID shelterId) {
 		return repository.existsByShelterId(shelterId);
 	}
+	
+	@Transactional(readOnly = true)
+	public boolean existsByVaccineId(UUID vaccineId) {
+		return repository.existsByVaccineId(vaccineId);
+	}
 }
