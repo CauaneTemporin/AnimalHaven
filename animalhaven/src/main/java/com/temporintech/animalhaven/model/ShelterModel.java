@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_SHELTER")
 @Data
 @NoArgsConstructor
-public class ShelterModel{
+public class ShelterModel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)

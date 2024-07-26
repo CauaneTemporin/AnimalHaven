@@ -25,39 +25,39 @@ import jakarta.validation.Valid;
 @RequestMapping("/animal")
 public class AnimalController {
 
-	private final AnimalServiceImpl service;
+    private final AnimalServiceImpl service;
 
-	@Autowired
-	public AnimalController(AnimalServiceImpl service) {
-		super();
-		this.service = service;
-	}
+    @Autowired
+    public AnimalController(AnimalServiceImpl service) {
+        super();
+        this.service = service;
+    }
 
-	@PostMapping
-	public ResponseEntity<AnimalModel> saveAnimal(@RequestBody @Valid AnimalRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
-	}
+    @PostMapping
+    public ResponseEntity<AnimalModel> saveAnimal(@RequestBody @Valid AnimalRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
+    }
 
-	@GetMapping
-	public ResponseEntity<List<AnimalModel>> getAllAnimal() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-	}
+    @GetMapping
+    public ResponseEntity<List<AnimalModel>> getAllAnimal() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Object> getOneAnimal(@PathVariable(value = "id") UUID id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-	}
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneAnimal(@PathVariable(value = "id") UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+    }
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateAnimal(@PathVariable(value = "id") UUID id,
-			@RequestBody @Valid AnimalRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
-	}
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateAnimal(@PathVariable(value = "id") UUID id,
+                                               @RequestBody @Valid AnimalRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteAnimal(@PathVariable(value = "id") UUID id) {
-		service.delete(id);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAnimal(@PathVariable(value = "id") UUID id) {
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 
 }

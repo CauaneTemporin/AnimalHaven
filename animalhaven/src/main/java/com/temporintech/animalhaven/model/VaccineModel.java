@@ -18,23 +18,23 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_VACCINE")
 @Data
 @NoArgsConstructor
-public class VaccineModel  {
+public class VaccineModel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
-	@Column(nullable = false)
-	private String name;
-	@Column(nullable = false)
-	private String dose;
-	@Column(nullable = false)
-	private String manufacturer;
-	@Column(nullable = false)
-	private String lotNumber;
-	@Column(nullable = false)
-	private String observation;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private String dose;
+    @Column(nullable = false)
+    private String manufacturer;
+    @Column(nullable = false)
+    private String lotNumber;
+    @Column(nullable = false)
+    private String observation;
 
-	@ManyToOne
-	@JoinColumn(name = "doctor_id", nullable = false)
-	private DoctorModel doctor;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private DoctorModel doctor;
 }

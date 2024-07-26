@@ -25,38 +25,38 @@ import jakarta.validation.Valid;
 @RequestMapping("/species")
 public class SpeciesController {
 
-	private final SpeciesServiceImpl service;
-	
-	@Autowired
-	public SpeciesController(SpeciesServiceImpl service) {
-		super();
-		this.service = service;
-	}
+    private final SpeciesServiceImpl service;
 
-	@PostMapping
-	public ResponseEntity<SpeciesModel> saveSpecies(@RequestBody @Valid SpeciesRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
-	}
+    @Autowired
+    public SpeciesController(SpeciesServiceImpl service) {
+        super();
+        this.service = service;
+    }
 
-	@GetMapping
-	public ResponseEntity<List<SpeciesModel>> getAllSpecies() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-	}
+    @PostMapping
+    public ResponseEntity<SpeciesModel> saveSpecies(@RequestBody @Valid SpeciesRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
+    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Object> getOneSpecies(@PathVariable(value = "id") UUID id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-	}
+    @GetMapping
+    public ResponseEntity<List<SpeciesModel>> getAllSpecies() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    }
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateSpecies(@PathVariable(value = "id") UUID id,
-			@RequestBody @Valid SpeciesRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
-	}
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneSpecies(@PathVariable(value = "id") UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteSpecies(@PathVariable(value = "id") UUID id) {
-		service.delete(id);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateSpecies(@PathVariable(value = "id") UUID id,
+                                                @RequestBody @Valid SpeciesRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSpecies(@PathVariable(value = "id") UUID id) {
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

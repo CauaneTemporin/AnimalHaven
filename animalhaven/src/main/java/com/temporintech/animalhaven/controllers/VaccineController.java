@@ -29,38 +29,38 @@ import jakarta.validation.Valid;
 @RequestMapping("/vaccine")
 public class VaccineController {
 
-	private final VaccineServiceImpl service;
+    private final VaccineServiceImpl service;
 
-	@Autowired
-	public VaccineController(VaccineServiceImpl service) {
-		super();
-		this.service = service;
-	}
+    @Autowired
+    public VaccineController(VaccineServiceImpl service) {
+        super();
+        this.service = service;
+    }
 
-	@PostMapping
-	public ResponseEntity<VaccineModel> saveVaccine(@RequestBody @Valid VaccineRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
-	}
+    @PostMapping
+    public ResponseEntity<VaccineModel> saveVaccine(@RequestBody @Valid VaccineRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
+    }
 
-	@GetMapping
-	public ResponseEntity<List<VaccineModel>> getAllVaccine() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-	}
+    @GetMapping
+    public ResponseEntity<List<VaccineModel>> getAllVaccine() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Object> getOneVaccine(@PathVariable(value = "id") UUID id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-	}
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneVaccine(@PathVariable(value = "id") UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+    }
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateVaccine(@PathVariable(value = "id") UUID id,
-			@RequestBody @Valid VaccineRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
-	}
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateVaccine(@PathVariable(value = "id") UUID id,
+                                                @RequestBody @Valid VaccineRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteVaccine(@PathVariable(value = "id") UUID id) {
-		service.delete(id);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVaccine(@PathVariable(value = "id") UUID id) {
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

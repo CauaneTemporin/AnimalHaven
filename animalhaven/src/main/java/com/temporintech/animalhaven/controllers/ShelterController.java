@@ -25,38 +25,38 @@ import jakarta.validation.Valid;
 @RequestMapping("/shelter")
 public class ShelterController {
 
-	private final ShelterServiceImpl service;
+    private final ShelterServiceImpl service;
 
-	@Autowired
-	public ShelterController(ShelterServiceImpl service) {
-		super();
-		this.service = service;
-	}
+    @Autowired
+    public ShelterController(ShelterServiceImpl service) {
+        super();
+        this.service = service;
+    }
 
-	@PostMapping
-	public ResponseEntity<ShelterModel> saveShelter(@RequestBody @Valid ShelterRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
-	}
+    @PostMapping
+    public ResponseEntity<ShelterModel> saveShelter(@RequestBody @Valid ShelterRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
+    }
 
-	@GetMapping
-	public ResponseEntity<List<ShelterModel>> getAllShelter() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-	}
+    @GetMapping
+    public ResponseEntity<List<ShelterModel>> getAllShelter() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Object> getOneShelter(@PathVariable(value = "id") UUID id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-	}
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneShelter(@PathVariable(value = "id") UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+    }
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateShelter(@PathVariable(value = "id") UUID id,
-			@RequestBody @Valid ShelterRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
-	}
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateShelter(@PathVariable(value = "id") UUID id,
+                                                @RequestBody @Valid ShelterRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteShelter(@PathVariable(value = "id") UUID id) {
-		service.delete(id);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteShelter(@PathVariable(value = "id") UUID id) {
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

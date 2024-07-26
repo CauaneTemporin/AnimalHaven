@@ -25,38 +25,38 @@ import jakarta.validation.Valid;
 @RequestMapping("/doctor")
 public class DoctorController {
 
-	private final DoctorService service;
+    private final DoctorService service;
 
-	@Autowired
-	public DoctorController(DoctorService service) {
-		super();
-		this.service = service;
-	}
+    @Autowired
+    public DoctorController(DoctorService service) {
+        super();
+        this.service = service;
+    }
 
-	@PostMapping
-	public ResponseEntity<DoctorModel> saveDoctor(@RequestBody @Valid DoctorRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
-	}
+    @PostMapping
+    public ResponseEntity<DoctorModel> saveDoctor(@RequestBody @Valid DoctorRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto));
+    }
 
-	@GetMapping
-	public ResponseEntity<List<DoctorModel>> getAllDoctor() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-	}
+    @GetMapping
+    public ResponseEntity<List<DoctorModel>> getAllDoctor() {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Object> getOneDoctor(@PathVariable(value = "id") UUID id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-	}
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneDoctor(@PathVariable(value = "id") UUID id) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+    }
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateDoctor(@PathVariable(value = "id") UUID id,
-			@RequestBody @Valid DoctorRecordDTO dto) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
-	}
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateDoctor(@PathVariable(value = "id") UUID id,
+                                               @RequestBody @Valid DoctorRecordDTO dto) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteDoctor(@PathVariable(value = "id") UUID id) {
-		service.delete(id);
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDoctor(@PathVariable(value = "id") UUID id) {
+        service.delete(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

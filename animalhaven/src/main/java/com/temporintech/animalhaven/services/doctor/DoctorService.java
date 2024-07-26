@@ -8,6 +8,6 @@ import com.temporintech.animalhaven.services.CrudService;
 
 
 @Service
-public interface DoctorService extends CrudService<DoctorModel, DoctorRecordDTO>{
+public interface DoctorService extends CrudService<DoctorModel, DoctorRecordDTO> {
 
 }

@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CrudService<T, D> {
-	
-	T save(D dto);
 
-	T update(UUID id, D dto);
+    T save(D dto);
 
-	List<T> findAll();
+    T update(UUID id, D dto);
 
-	T findById(UUID id);
+    List<T> findAll();
 
-	void delete(UUID id);
+    T findById(UUID id);
+
+    void delete(UUID id);
 }

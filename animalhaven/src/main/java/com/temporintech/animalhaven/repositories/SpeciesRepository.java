@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.temporintech.animalhaven.model.SpeciesModel;
 
 @Repository
-public interface SpeciesRepository extends JpaRepository<SpeciesModel, UUID>{
+public interface SpeciesRepository extends JpaRepository<SpeciesModel, UUID> {
 
 }

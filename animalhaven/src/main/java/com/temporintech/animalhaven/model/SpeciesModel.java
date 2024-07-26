@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_SPECIES")
 @Data
 @NoArgsConstructor
-public class SpeciesModel{
+public class SpeciesModel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     @Column(nullable = false)
     private String name;
 }

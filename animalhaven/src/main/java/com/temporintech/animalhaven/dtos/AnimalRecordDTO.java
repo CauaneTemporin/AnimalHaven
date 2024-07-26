@@ -13,7 +13,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 public record AnimalRecordDTO(@NotBlank String name, @NotNull int age, Gender gender, @NotNull double weight,
-		Health health, @Past Date dateEntered, @NotBlank String description, Status status, boolean castrated,
-		UUID speciesId, UUID shelterId,  List<UUID> vaccineId) {
+                              Health health, @Past Date dateEntered, @NotBlank String description, Status status,
+                              boolean castrated,
+                              UUID speciesId, UUID shelterId, List<UUID> vaccineId) {
 
 }

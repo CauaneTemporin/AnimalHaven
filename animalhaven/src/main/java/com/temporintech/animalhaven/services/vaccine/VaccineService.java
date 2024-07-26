@@ -11,6 +11,6 @@ import com.temporintech.animalhaven.services.CrudService;
 @Service
 public interface VaccineService extends CrudService<VaccineModel, VaccineRecordDTO> {
 
-	boolean existsByDoctorId(UUID doctorId);
+    boolean existsByDoctorId(UUID doctorId);
 
 }

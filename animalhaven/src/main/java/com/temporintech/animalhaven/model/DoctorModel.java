@@ -22,16 +22,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_DOCTOR")
 @Data
 @NoArgsConstructor
-public class DoctorModel  {
+public class DoctorModel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID id;
-	@Column(nullable = false)
-	private String name;
-	@Column(nullable = false)
-	private String specialization;
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
-	private Status status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private String specialization;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
 }
