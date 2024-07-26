@@ -3,6 +3,7 @@ package com.temporintech.animalhaven.services.vaccine;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +17,11 @@ import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 
 @Service
+@RequiredArgsConstructor
 public class VaccineServiceImpl implements VaccineService {
 
 	private final VaccineRepository repository;
 	private final AnimalService animalService;
-
-	@Autowired
-	public VaccineServiceImpl(VaccineRepository repository, AnimalService animalService) {
-		super();
-		this.repository = repository;
-		this.animalService = animalService;
-	}
 
 	@Transactional
 	public VaccineModel save(VaccineRecordDTO dto) {

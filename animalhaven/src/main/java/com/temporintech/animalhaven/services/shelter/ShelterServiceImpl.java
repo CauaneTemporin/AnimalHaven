@@ -3,6 +3,7 @@ package com.temporintech.animalhaven.services.shelter;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +17,11 @@ import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 
 @Service
+@RequiredArgsConstructor
 public class ShelterServiceImpl implements ShelterService {
 
 	private final ShelterRepository repository;
 	private final AnimalService animalService;
-
-	@Autowired
-	public ShelterServiceImpl(ShelterRepository repository, AnimalService animalService) {
-		super();
-		this.repository = repository;
-		this.animalService = animalService;
-	}
 
 	@Transactional
 	public ShelterModel save(ShelterRecordDTO dto) {
