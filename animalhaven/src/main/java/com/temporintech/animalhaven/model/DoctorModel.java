@@ -15,12 +15,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "TB_DOCTOR")
-public class DoctorModel implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+@Data
+@NoArgsConstructor
+public class DoctorModel  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,36 +34,4 @@ public class DoctorModel implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Status status;
-
-	public UUID getId() {
-		return id;
-	}
-
-	public void setId(UUID id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSpecialization() {
-		return specialization;
-	}
-
-	public void setSpecialization(String specialization) {
-		this.specialization = specialization;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
 }
