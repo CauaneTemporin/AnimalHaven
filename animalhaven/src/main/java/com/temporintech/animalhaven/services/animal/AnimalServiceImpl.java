@@ -20,17 +20,20 @@ import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundExceptio
 @Service
 public class AnimalServiceImpl implements AnimalService {
 
-	@Autowired
-	private AnimalRepository repository;
+	private final AnimalRepository repository;
+	private final SpeciesRepository speciesRepository;
+	private final ShelterRepository shelterRepository;
+	private final VaccineRepository vaccineRepository;
 
 	@Autowired
-	private SpeciesRepository speciesRepository;
-
-	@Autowired
-	private ShelterRepository shelterRepository;
-
-	@Autowired
-	private VaccineRepository vaccineRepository;
+	public AnimalServiceImpl(AnimalRepository repository, SpeciesRepository speciesRepository,
+			ShelterRepository shelterRepository, VaccineRepository vaccineRepository) {
+		super();
+		this.repository = repository;
+		this.speciesRepository = speciesRepository;
+		this.shelterRepository = shelterRepository;
+		this.vaccineRepository = vaccineRepository;
+	}
 
 	@Transactional
 	public AnimalModel save(AnimalRecordDTO dto) {

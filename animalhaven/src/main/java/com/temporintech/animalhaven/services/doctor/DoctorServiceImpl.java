@@ -18,11 +18,15 @@ import com.temporintech.animalhaven.services.vaccine.VaccineService;
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
-	@Autowired
-	private DoctorRepository repository;
+	private final DoctorRepository repository;
+	private final VaccineService service;
 
 	@Autowired
-	private VaccineService service;
+	public DoctorServiceImpl(DoctorRepository repository, VaccineService service) {
+		super();
+		this.repository = repository;
+		this.service = service;
+	}
 
 	@Transactional
 	public DoctorModel save(DoctorRecordDTO dto) {

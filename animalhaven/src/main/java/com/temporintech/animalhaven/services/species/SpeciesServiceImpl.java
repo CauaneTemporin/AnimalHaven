@@ -18,11 +18,15 @@ import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundExceptio
 @Service
 public class SpeciesServiceImpl implements SpeciesService {
 
-	@Autowired
-	private SpeciesRepository repository;
+	private final SpeciesRepository repository;
+	private final AnimalService animalService;
 
 	@Autowired
-	private AnimalService animalService;
+	public SpeciesServiceImpl(SpeciesRepository repository, AnimalService animalService) {
+		super();
+		this.repository = repository;
+		this.animalService = animalService;
+	}
 
 	@Transactional
 	public SpeciesModel save(SpeciesRecordDTO dto) {
@@ -44,7 +48,8 @@ public class SpeciesServiceImpl implements SpeciesService {
 	}
 
 	public SpeciesModel findById(UUID id) {
-		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Species with ID " + id + " not found"));
+		return repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Species with ID " + id + " not found"));
 	}
 
 	@Transactional

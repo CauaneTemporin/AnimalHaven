@@ -18,11 +18,15 @@ import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundExceptio
 @Service
 public class VaccineServiceImpl implements VaccineService {
 
+	private final VaccineRepository repository;
+	private final AnimalService animalService;
+
 	@Autowired
-	private VaccineRepository repository;
-	
-	@Autowired
-	private AnimalService animalService;
+	public VaccineServiceImpl(VaccineRepository repository, AnimalService animalService) {
+		super();
+		this.repository = repository;
+		this.animalService = animalService;
+	}
 
 	@Transactional
 	public VaccineModel save(VaccineRecordDTO dto) {
@@ -44,7 +48,8 @@ public class VaccineServiceImpl implements VaccineService {
 	}
 
 	public VaccineModel findById(UUID id) {
-		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Vaccine with ID " + id + " not found"));
+		return repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Vaccine with ID " + id + " not found"));
 	}
 
 	@Transactional

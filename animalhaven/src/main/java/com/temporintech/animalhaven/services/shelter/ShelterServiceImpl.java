@@ -18,11 +18,15 @@ import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundExceptio
 @Service
 public class ShelterServiceImpl implements ShelterService {
 
-	@Autowired
-	ShelterRepository repository;
+	private final ShelterRepository repository;
+	private final AnimalService animalService;
 
 	@Autowired
-	private AnimalService animalService;
+	public ShelterServiceImpl(ShelterRepository repository, AnimalService animalService) {
+		super();
+		this.repository = repository;
+		this.animalService = animalService;
+	}
 
 	@Transactional
 	public ShelterModel save(ShelterRecordDTO dto) {
