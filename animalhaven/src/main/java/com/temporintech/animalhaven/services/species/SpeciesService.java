@@ -1,23 +1,12 @@
 package com.temporintech.animalhaven.services.species;
 
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
 import com.temporintech.animalhaven.model.SpeciesModel;
+import com.temporintech.animalhaven.services.CrudService;
 
 @Service
-public interface SpeciesService {
+public interface SpeciesService extends CrudService<SpeciesModel, SpeciesRecordDTO> {
 
-	SpeciesModel save(SpeciesRecordDTO dto);
-
-	SpeciesModel update(UUID id, SpeciesRecordDTO dto);
-
-	List<SpeciesModel> findAll();
-
-	SpeciesModel findById(UUID id);
-
-	void delete(UUID id);
 }

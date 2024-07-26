@@ -1,23 +1,12 @@
 package com.temporintech.animalhaven.services.shelter;
 
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import com.temporintech.animalhaven.dtos.ShelterRecordDTO;
 import com.temporintech.animalhaven.model.ShelterModel;
+import com.temporintech.animalhaven.services.CrudService;
 
 @Service
-public interface ShelterService {
+public interface ShelterService extends CrudService<ShelterModel, ShelterRecordDTO> {
 
-	ShelterModel save(ShelterRecordDTO dto);
-
-	ShelterModel update(UUID id, ShelterRecordDTO dto);
-
-	List<ShelterModel> findAll();
-
-	ShelterModel findById(UUID id);
-
-	void delete(UUID id);
 }
