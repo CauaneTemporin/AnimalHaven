@@ -25,8 +25,13 @@ import jakarta.validation.Valid;
 @RequestMapping("/shelter")
 public class ShelterController {
 
+	private final ShelterServiceImpl service;
+
 	@Autowired
-	ShelterServiceImpl service;
+	public ShelterController(ShelterServiceImpl service) {
+		super();
+		this.service = service;
+	}
 
 	@PostMapping
 	public ResponseEntity<ShelterModel> saveShelter(@RequestBody @Valid ShelterRecordDTO dto) {

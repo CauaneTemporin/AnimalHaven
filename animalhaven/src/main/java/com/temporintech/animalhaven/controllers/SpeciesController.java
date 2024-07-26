@@ -25,8 +25,13 @@ import jakarta.validation.Valid;
 @RequestMapping("/species")
 public class SpeciesController {
 
+	private final SpeciesServiceImpl service;
+	
 	@Autowired
-	SpeciesServiceImpl service;
+	public SpeciesController(SpeciesServiceImpl service) {
+		super();
+		this.service = service;
+	}
 
 	@PostMapping
 	public ResponseEntity<SpeciesModel> saveSpecies(@RequestBody @Valid SpeciesRecordDTO dto) {

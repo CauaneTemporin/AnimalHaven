@@ -29,8 +29,13 @@ import jakarta.validation.Valid;
 @RequestMapping("/vaccine")
 public class VaccineController {
 
+	private final VaccineServiceImpl service;
+
 	@Autowired
-	VaccineServiceImpl service;
+	public VaccineController(VaccineServiceImpl service) {
+		super();
+		this.service = service;
+	}
 
 	@PostMapping
 	public ResponseEntity<VaccineModel> saveVaccine(@RequestBody @Valid VaccineRecordDTO dto) {

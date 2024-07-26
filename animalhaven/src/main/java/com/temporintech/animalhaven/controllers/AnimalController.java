@@ -25,8 +25,13 @@ import jakarta.validation.Valid;
 @RequestMapping("/animal")
 public class AnimalController {
 
+	private final AnimalServiceImpl service;
+
 	@Autowired
-	AnimalServiceImpl service;
+	public AnimalController(AnimalServiceImpl service) {
+		super();
+		this.service = service;
+	}
 
 	@PostMapping
 	public ResponseEntity<AnimalModel> saveAnimal(@RequestBody @Valid AnimalRecordDTO dto) {

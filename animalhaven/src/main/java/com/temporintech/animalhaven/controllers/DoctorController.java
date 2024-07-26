@@ -24,9 +24,14 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/doctor")
 public class DoctorController {
-	
+
+	private final DoctorService service;
+
 	@Autowired
-	DoctorService service;
+	public DoctorController(DoctorService service) {
+		super();
+		this.service = service;
+	}
 
 	@PostMapping
 	public ResponseEntity<DoctorModel> saveDoctor(@RequestBody @Valid DoctorRecordDTO dto) {
