@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,15 +28,10 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/vaccine")
+@RequiredArgsConstructor
 public class VaccineController {
 
     private final VaccineServiceImpl service;
-
-    @Autowired
-    public VaccineController(VaccineServiceImpl service) {
-        super();
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<VaccineModel> saveVaccine(@RequestBody @Valid VaccineRecordDTO dto) {

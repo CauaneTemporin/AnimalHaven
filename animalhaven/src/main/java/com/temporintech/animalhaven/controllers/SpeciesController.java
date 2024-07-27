@@ -3,6 +3,7 @@ package com.temporintech.animalhaven.controllers;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +24,10 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/species")
+@RequiredArgsConstructor
 public class SpeciesController {
 
     private final SpeciesServiceImpl service;
-
-    @Autowired
-    public SpeciesController(SpeciesServiceImpl service) {
-        super();
-        this.service = service;
-    }
 
     @PostMapping
     public ResponseEntity<SpeciesModel> saveSpecies(@RequestBody @Valid SpeciesRecordDTO dto) {
