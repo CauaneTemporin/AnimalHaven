@@ -2,6 +2,8 @@
 
 A `Animal Haven API` é um serviço HTTP REST desenvolvido para gerenciar organizações de proteção animal, como abrigos e ONGs, que precisam de uma maneira eficiente de registrar e manter dados sobre os animais sob seus cuidados. 
 
+![AnimalHaven drawio](https://github.com/user-attachments/assets/18f96b11-3405-4ee1-b746-2c26583609b0)
+
 ## Funcionalidades
 
 - Gerenciamento de Abrigos: Cadastro, atualização, listagem e exclusão de abrigos.
