@@ -81,4 +81,12 @@ public class SpeciesServiceImplTest {
         verify(speciesRepository, never()).delete(speciesModel);
     }
 
+    @Test
+    public void testDeleteSpeciesWithoutAssociation() {
+        when(speciesRepository.findById(speciesId)).thenReturn(Optional.of(speciesModel));
+        when(animalService.existsBySpeciesId(speciesId)).thenReturn(false);
+
+        speciesService.delete(speciesId);
+        verify(speciesRepository, times(1)).delete(speciesModel);
+    }
 }
