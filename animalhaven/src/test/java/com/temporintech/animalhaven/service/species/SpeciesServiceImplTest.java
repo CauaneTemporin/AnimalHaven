@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,6 +49,17 @@ public class SpeciesServiceImplTest {
         when(speciesRepository.save(any(SpeciesModel.class))).thenReturn(speciesModel);
         SpeciesModel savedSpecies = speciesService.save(speciesDTO);
         assertEquals(speciesModel.getName(), savedSpecies.getName());
+        verify(speciesRepository, times(1)).save(any(SpeciesModel.class));
+    }
+
+    @Test
+    public void testUpdateSpeciesSuccess() {
+        when(speciesRepository.findById(speciesId)).thenReturn(Optional.of(speciesModel));
+        when(speciesRepository.save(any(SpeciesModel.class))).thenReturn(speciesModel);
+
+        SpeciesModel updatedSpecies = speciesService.update(speciesId, speciesDTO);
+        assertEquals(speciesModel.getName(), updatedSpecies.getName());
+        verify(speciesRepository, times(1)).findById(speciesId);
         verify(speciesRepository, times(1)).save(any(SpeciesModel.class));
     }
 }
