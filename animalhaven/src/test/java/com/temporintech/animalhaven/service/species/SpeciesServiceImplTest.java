@@ -6,11 +6,16 @@ import com.temporintech.animalhaven.repositories.SpeciesRepository;
 import com.temporintech.animalhaven.services.animal.AnimalService;
 import com.temporintech.animalhaven.services.species.SpeciesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 public class SpeciesServiceImplTest {
 
@@ -36,5 +41,13 @@ public class SpeciesServiceImplTest {
         speciesModel.setName("Test Species");
 
         speciesDTO = new SpeciesRecordDTO("Test Species");
+    }
+
+    @Test
+    public void testSaveSpecies() {
+        when(speciesRepository.save(any(SpeciesModel.class))).thenReturn(speciesModel);
+        SpeciesModel savedSpecies = speciesService.save(speciesDTO);
+        assertEquals(speciesModel.getName(), savedSpecies.getName());
+        verify(speciesRepository, times(1)).save(any(SpeciesModel.class));
     }
 }
