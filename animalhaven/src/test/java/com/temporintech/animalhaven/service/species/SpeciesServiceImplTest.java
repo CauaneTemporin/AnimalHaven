@@ -4,6 +4,7 @@ import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
 import com.temporintech.animalhaven.model.SpeciesModel;
 import com.temporintech.animalhaven.repositories.SpeciesRepository;
 import com.temporintech.animalhaven.services.animal.AnimalService;
+import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 import com.temporintech.animalhaven.services.species.SpeciesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -69,6 +70,15 @@ public class SpeciesServiceImplTest {
     public void testUpdateSpeciesNotFound() {
         when(speciesRepository.findById(speciesId)).thenReturn(Optional.empty());
         assertThrows(ResourceNotFoundException.class, () -> speciesService.update(speciesId, speciesDTO));
+    }
+
+    @Test
+    public void testDeleteSpeciesWithAssociation() {
+        when(speciesRepository.findById(speciesId)).thenReturn(Optional.of(speciesModel));
+        when(animalService.existsBySpeciesId(speciesId)).thenReturn(true);
+
+        assertThrows(AssociationException.class, () -> speciesService.delete(speciesId));
+        verify(speciesRepository, never()).delete(speciesModel);
     }
 
 }
