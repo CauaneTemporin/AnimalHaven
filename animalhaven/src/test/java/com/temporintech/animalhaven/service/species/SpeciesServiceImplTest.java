@@ -4,6 +4,7 @@ import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
 import com.temporintech.animalhaven.model.SpeciesModel;
 import com.temporintech.animalhaven.repositories.SpeciesRepository;
 import com.temporintech.animalhaven.services.animal.AnimalService;
+import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 import com.temporintech.animalhaven.services.species.SpeciesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -62,4 +64,11 @@ public class SpeciesServiceImplTest {
         verify(speciesRepository, times(1)).findById(speciesId);
         verify(speciesRepository, times(1)).save(any(SpeciesModel.class));
     }
+
+    @Test
+    public void testUpdateSpeciesNotFound() {
+        when(speciesRepository.findById(speciesId)).thenReturn(Optional.empty());
+        assertThrows(ResourceNotFoundException.class, () -> speciesService.update(speciesId, speciesDTO));
+    }
+
 }
