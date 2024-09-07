@@ -7,8 +7,6 @@ import com.temporintech.animalhaven.model.SpeciesModel;
 import com.temporintech.animalhaven.services.species.SpeciesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,7 +18,8 @@ import java.util.UUID;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(SpeciesController.class)
 public class SpeciesControllerTest {
@@ -88,4 +87,11 @@ public class SpeciesControllerTest {
                 .andExpect(jsonPath("$.name").value(speciesModel.getName()));
     }
 
+    @Test
+    public void testDeleteSpecies() throws Exception {
+        doNothing().when(speciesService).delete(speciesId);
+
+        mockMvc.perform(delete("/species/{id}", speciesId))
+                .andExpect(status().isNoContent());
+    }
 }
