@@ -58,4 +58,13 @@ public class SpeciesControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value(speciesModel.getName()));
     }
+
+    @Test
+    public void testGetAllSpecies() throws Exception {
+        when(speciesService.findAll()).thenReturn(Arrays.asList(speciesModel));
+
+        mockMvc.perform(get("/species"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value(speciesModel.getName()));
+    }
 }
