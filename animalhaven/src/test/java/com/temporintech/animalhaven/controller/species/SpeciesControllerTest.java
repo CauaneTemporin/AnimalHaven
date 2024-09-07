@@ -67,4 +67,13 @@ public class SpeciesControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name").value(speciesModel.getName()));
     }
+
+    @Test
+    public void testGetOneSpecies() throws Exception {
+        when(speciesService.findById(speciesId)).thenReturn(speciesModel);
+
+        mockMvc.perform(get("/species/{id}", speciesId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(speciesModel.getName()));
+    }
 }
