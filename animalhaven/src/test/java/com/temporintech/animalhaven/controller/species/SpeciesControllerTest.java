@@ -47,4 +47,15 @@ public class SpeciesControllerTest {
 
         speciesDTO = new SpeciesRecordDTO("Test Species");
     }
+
+    @Test
+    public void testSaveSpecies() throws Exception {
+        when(speciesService.save(any(SpeciesRecordDTO.class))).thenReturn(speciesModel);
+
+        mockMvc.perform(post("/species")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(speciesDTO)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name").value(speciesModel.getName()));
+    }
 }
