@@ -76,4 +76,16 @@ public class SpeciesControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value(speciesModel.getName()));
     }
+
+    @Test
+    public void testUpdateSpecies() throws Exception {
+        when(speciesService.update(eq(speciesId), any(SpeciesRecordDTO.class))).thenReturn(speciesModel);
+
+        mockMvc.perform(put("/species/{id}", speciesId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(speciesDTO)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(speciesModel.getName()));
+    }
+
 }
