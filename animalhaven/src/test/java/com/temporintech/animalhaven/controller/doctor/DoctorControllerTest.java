@@ -40,4 +40,17 @@ class DoctorControllerTest {
         doctorModel.setSpecialization("Cardiology");
         doctorModel.setStatus(Status.ACTIVE);
     }
+
+    @Test
+    void testSaveDoctorSuccess() {
+        DoctorRecordDTO doctorDTO = new DoctorRecordDTO("Dr. John", "Cardiology", Status.ACTIVE, null);
+        when(doctorService.save(any(DoctorRecordDTO.class))).thenReturn(doctorModel);
+
+        ResponseEntity<DoctorModel> response = doctorController.saveDoctor(doctorDTO);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals("Dr. John", response.getBody().getName());
+        verify(doctorService, times(1)).save(any(DoctorRecordDTO.class));
+    }
 }
