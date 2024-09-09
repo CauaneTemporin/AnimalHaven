@@ -66,5 +66,18 @@ class DoctorControllerTest {
         verify(doctorService, times(1)).findAll();
     }
 
+    @Test
+    void testGetDoctorByIdSuccess() {
+        UUID doctorId = doctorModel.getId();
+        when(doctorService.findById(doctorId)).thenReturn(doctorModel);
+
+        ResponseEntity<Object> response = doctorController.getOneDoctor(doctorId);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(doctorModel, response.getBody());
+        verify(doctorService, times(1)).findById(doctorId);
+    }
+
 
 }
