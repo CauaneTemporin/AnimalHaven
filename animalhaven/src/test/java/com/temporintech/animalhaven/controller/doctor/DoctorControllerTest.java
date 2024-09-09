@@ -53,4 +53,18 @@ class DoctorControllerTest {
         assertEquals("Dr. John", response.getBody().getName());
         verify(doctorService, times(1)).save(any(DoctorRecordDTO.class));
     }
+
+    @Test
+    void testGetAllDoctorsSuccess() {
+        when(doctorService.findAll()).thenReturn(Arrays.asList(doctorModel));
+
+        ResponseEntity<List<DoctorModel>> response = doctorController.getAllDoctor();
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(1, response.getBody().size());
+        verify(doctorService, times(1)).findAll();
+    }
+
+
 }
