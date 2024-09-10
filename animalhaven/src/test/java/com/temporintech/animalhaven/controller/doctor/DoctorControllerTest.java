@@ -93,4 +93,16 @@ class DoctorControllerTest {
         verify(doctorService, times(1)).update(doctorId, doctorDTO);
     }
 
+    @Test
+    void testDeleteDoctorSuccess() {
+        UUID doctorId = doctorModel.getId();
+
+        doNothing().when(doctorService).delete(doctorId);
+
+        ResponseEntity<Void> response = doctorController.deleteDoctor(doctorId);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        verify(doctorService, times(1)).delete(doctorId);
+    }
 }
