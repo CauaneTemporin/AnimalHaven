@@ -79,5 +79,18 @@ class DoctorControllerTest {
         verify(doctorService, times(1)).findById(doctorId);
     }
 
+    @Test
+    void testUpdateDoctorSuccess() {
+        UUID doctorId = doctorModel.getId();
+        DoctorRecordDTO doctorDTO = new DoctorRecordDTO("Dr. Jane", "Dermatology", Status.ACTIVE, null);
+
+        when(doctorService.update(doctorId, doctorDTO)).thenReturn(doctorModel);
+
+        ResponseEntity<Object> response = doctorController.updateDoctor(doctorId, doctorDTO);
+
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        verify(doctorService, times(1)).update(doctorId, doctorDTO);
+    }
 
 }
