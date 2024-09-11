@@ -71,4 +71,13 @@ class ShelterServiceImplTest {
         assertEquals(shelterDTO.name(), updatedShelter.getName());
         verify(repository, times(1)).save(shelter);
     }
+
+
+    @Test
+    void testUpdateShelter_NotFound() {
+        when(repository.findById(shelterId)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class, () -> service.update(shelterId, shelterDTO));
+        verify(repository, never()).save(any(ShelterModel.class));
+    }
 }
