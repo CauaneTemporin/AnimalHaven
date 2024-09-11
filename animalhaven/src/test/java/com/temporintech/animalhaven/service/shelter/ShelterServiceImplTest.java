@@ -59,4 +59,16 @@ class ShelterServiceImplTest {
         assertEquals(shelter.getId(), savedShelter.getId());
         verify(repository, times(1)).save(any(ShelterModel.class));
     }
+
+    @Test
+    void testUpdateShelter_Success() {
+        when(repository.findById(shelterId)).thenReturn(Optional.of(shelter));
+        when(repository.save(any(ShelterModel.class))).thenReturn(shelter);
+
+        ShelterModel updatedShelter = service.update(shelterId, shelterDTO);
+
+        assertNotNull(updatedShelter);
+        assertEquals(shelterDTO.name(), updatedShelter.getName());
+        verify(repository, times(1)).save(shelter);
+    }
 }
