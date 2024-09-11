@@ -80,4 +80,15 @@ class ShelterServiceImplTest {
         assertThrows(ResourceNotFoundException.class, () -> service.update(shelterId, shelterDTO));
         verify(repository, never()).save(any(ShelterModel.class));
     }
+
+    @Test
+    void testFindById_Success() {
+        when(repository.findById(shelterId)).thenReturn(Optional.of(shelter));
+
+        ShelterModel foundShelter = service.findById(shelterId);
+
+        assertNotNull(foundShelter);
+        assertEquals(shelter.getName(), foundShelter.getName());
+    }
+
 }
