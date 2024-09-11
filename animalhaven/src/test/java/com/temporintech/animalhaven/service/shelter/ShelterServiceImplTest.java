@@ -48,4 +48,15 @@ class ShelterServiceImplTest {
 
         shelterDTO = new ShelterRecordDTO("Shelter A", "123 Street", "123456789", 50);
     }
+
+    @Test
+    void testSaveShelter() {
+        when(repository.save(any(ShelterModel.class))).thenReturn(shelter);
+
+        ShelterModel savedShelter = service.save(shelterDTO);
+
+        assertNotNull(savedShelter);
+        assertEquals(shelter.getId(), savedShelter.getId());
+        verify(repository, times(1)).save(any(ShelterModel.class));
+    }
 }
