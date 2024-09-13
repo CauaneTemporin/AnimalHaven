@@ -107,4 +107,13 @@ class ShelterServiceImplTest {
 
         verify(repository, times(1)).delete(shelter);
     }
+
+    @Test
+    void testDeleteShelter_AssociationExists() {
+        when(repository.findById(shelterId)).thenReturn(Optional.of(shelter));
+        when(animalService.existsByShelterId(shelterId)).thenReturn(true);
+
+        assertThrows(AssociationException.class, () -> service.delete(shelterId));
+        verify(repository, never()).delete(shelter);
+    }
 }
