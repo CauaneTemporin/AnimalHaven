@@ -91,4 +91,10 @@ class ShelterServiceImplTest {
         assertEquals(shelter.getName(), foundShelter.getName());
     }
 
+    @Test
+    void testFindById_NotFound() {
+        when(repository.findById(shelterId)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class, () -> service.findById(shelterId));
+    }
 }
