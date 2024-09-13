@@ -97,4 +97,14 @@ class ShelterServiceImplTest {
 
         assertThrows(ResourceNotFoundException.class, () -> service.findById(shelterId));
     }
+
+    @Test
+    void testDeleteShelter_Success() {
+        when(repository.findById(shelterId)).thenReturn(Optional.of(shelter));
+        when(animalService.existsByShelterId(shelterId)).thenReturn(false);
+
+        service.delete(shelterId);
+
+        verify(repository, times(1)).delete(shelter);
+    }
 }
