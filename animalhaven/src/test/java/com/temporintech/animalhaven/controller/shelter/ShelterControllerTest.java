@@ -59,4 +59,16 @@ class ShelterControllerTest {
         verify(service, times(1)).save(shelterDTO);
     }
 
+    @Test
+    void testGetShelterById() {
+        when(service.findById(shelterId)).thenReturn(shelter);
+
+        ResponseEntity<ShelterModel> response = controller.getShelterById(shelterId);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(shelter.getName(), response.getBody().getName());
+        verify(service, times(1)).findById(shelterId);
+    }
+
 }
