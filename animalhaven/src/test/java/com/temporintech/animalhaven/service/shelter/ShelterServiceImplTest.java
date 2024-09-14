@@ -116,4 +116,15 @@ class ShelterServiceImplTest {
         assertThrows(AssociationException.class, () -> service.delete(shelterId));
         verify(repository, never()).delete(shelter);
     }
+
+    @Test
+    void testFindAll() {
+        when(repository.findAll()).thenReturn(List.of(shelter));
+
+        List<ShelterModel> shelters = service.findAll();
+
+        assertFalse(shelters.isEmpty());
+        assertEquals(1, shelters.size());
+        assertEquals(shelter.getName(), shelters.get(0).getName());
+    }
 }
