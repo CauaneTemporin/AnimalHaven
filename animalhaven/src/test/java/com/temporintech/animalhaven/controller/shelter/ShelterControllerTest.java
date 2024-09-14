@@ -45,4 +45,18 @@ class ShelterControllerTest {
 
         shelterDTO = new ShelterRecordDTO("Shelter A", "123 Street", "123456789", 50);
     }
+
+    @Test
+    void testCreateShelter() {
+        when(service.save(shelterDTO)).thenReturn(shelter);
+
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromPath("/shelters");
+        ResponseEntity<ShelterModel> response = controller.createShelter(shelterDTO, uriBuilder);
+
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(shelter.getId(), response.getBody().getId());
+        verify(service, times(1)).save(shelterDTO);
+    }
+
 }
