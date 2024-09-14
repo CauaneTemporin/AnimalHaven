@@ -83,4 +83,14 @@ class ShelterControllerTest {
         verify(service, times(1)).update(shelterId, shelterDTO);
     }
 
+    @Test
+    void testDeleteShelter() {
+        doNothing().when(service).delete(shelterId);
+
+        ResponseEntity<Void> response = controller.deleteShelter(shelterId);
+
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        verify(service, times(1)).delete(shelterId);
+    }
+
 }
