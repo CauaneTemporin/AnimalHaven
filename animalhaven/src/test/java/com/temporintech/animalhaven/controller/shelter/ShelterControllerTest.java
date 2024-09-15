@@ -93,4 +93,15 @@ class ShelterControllerTest {
         verify(service, times(1)).delete(shelterId);
     }
 
+    @Test
+    void testGetAllShelters() {
+        when(service.findAll()).thenReturn(List.of(shelter));
+
+        ResponseEntity<List<ShelterModel>> response = controller.getAllShelters();
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(1, response.getBody().size());
+        verify(service, times(1)).findAll();
+    }
 }
