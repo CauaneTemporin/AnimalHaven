@@ -53,4 +53,14 @@ class VaccineServiceImplTest {
         assertEquals("Test Vaccine", savedVaccine.getName());
     }
 
+    @Test
+    void findById_ShouldReturnVaccine() {
+        when(repository.findById(vaccineId)).thenReturn(Optional.of(vaccine));
+
+        VaccineModel foundVaccine = service.findById(vaccineId);
+
+        assertNotNull(foundVaccine);
+        assertEquals("Test Vaccine", foundVaccine.getName());
+    }
+
 }
