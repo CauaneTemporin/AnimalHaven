@@ -63,4 +63,10 @@ class VaccineServiceImplTest {
         assertEquals("Test Vaccine", foundVaccine.getName());
     }
 
+    @Test
+    void findById_ShouldThrowResourceNotFoundException() {
+        when(repository.findById(vaccineId)).thenReturn(Optional.empty());
+
+        assertThrows(ResourceNotFoundException.class, () -> service.findById(vaccineId));
+    }
 }
