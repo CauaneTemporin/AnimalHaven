@@ -69,4 +69,14 @@ class VaccineServiceImplTest {
 
         assertThrows(ResourceNotFoundException.class, () -> service.findById(vaccineId));
     }
+
+    @Test
+    void delete_ShouldDeleteVaccine() {
+        when(repository.findById(vaccineId)).thenReturn(Optional.of(vaccine));
+        when(animalService.existsByVaccineId(vaccineId)).thenReturn(false);
+
+        assertDoesNotThrow(() -> service.delete(vaccineId));
+        verify(repository, times(1)).delete(vaccine);
+    }
+
 }
