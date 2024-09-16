@@ -79,4 +79,12 @@ class VaccineServiceImplTest {
         verify(repository, times(1)).delete(vaccine);
     }
 
+    @Test
+    void delete_ShouldThrowAssociationException() {
+        when(repository.findById(vaccineId)).thenReturn(Optional.of(vaccine));
+        when(animalService.existsByVaccineId(vaccineId)).thenReturn(true);
+
+        assertThrows(AssociationException.class, () -> service.delete(vaccineId));
+    }
+
 }
