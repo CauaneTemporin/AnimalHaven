@@ -41,4 +41,16 @@ class VaccineServiceImplTest {
         vaccine.setId(vaccineId);
         vaccine.setName("Test Vaccine");
     }
+
+    @Test
+    void save_ShouldSaveVaccine() {
+        VaccineRecordDTO dto = new VaccineRecordDTO("Test", "1 dose", "Pfizer", "12345", "Observations", null);
+        when(repository.save(any(VaccineModel.class))).thenReturn(vaccine);
+
+        VaccineModel savedVaccine = service.save(dto);
+
+        assertNotNull(savedVaccine);
+        assertEquals("Test Vaccine", savedVaccine.getName());
+    }
+
 }
