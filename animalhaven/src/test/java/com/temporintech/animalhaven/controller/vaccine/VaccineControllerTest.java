@@ -1,8 +1,5 @@
 package com.temporintech.animalhaven.controller.vaccine;
 
-
-package com.temporintech.animalhaven.controllers;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.temporintech.animalhaven.controllers.VaccineController;
 import com.temporintech.animalhaven.controllers.advice.GlobalExceptionHandler;
@@ -70,4 +67,16 @@ class VaccineControllerTest {
                 .andExpect(jsonPath("$.name").value("Vacina Teste"));
     }
 
+    @Test
+    void testSaveVaccine_InvalidInput() throws Exception {
+        // DTO inválido com campos em branco
+        VaccineRecordDTO invalidDto = new VaccineRecordDTO("", "", "", "", "", null);
+
+        mockMvc.perform(post("/vaccine")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(invalidDto)))
+                .andExpect(status().isBadRequest())  // Espera um 400 Bad Request
+                .andExpect(result -> assertTrue(result.getResolvedException() instanceof MethodArgumentNotValidException))
+                .andExpect(jsonPath("$.errors").exists());  // Customizar a resposta de erro de validação
+    }
 }
