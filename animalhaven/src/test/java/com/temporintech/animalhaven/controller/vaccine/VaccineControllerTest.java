@@ -56,4 +56,18 @@ class VaccineControllerTest {
         vaccineModel.setLotNumber("Lote 12345");
         vaccineModel.setObservation("Observação de Teste");
     }
+
+    @Test
+    void testSaveVaccine_Success() throws Exception {
+        VaccineRecordDTO dto = new VaccineRecordDTO("Vacina Teste", "1 dose", "Fabricante Teste", "Lote 12345", "Observação", null);
+
+        when(vaccineService.save(any(VaccineRecordDTO.class))).thenReturn(vaccineModel);
+
+        mockMvc.perform(post("/vaccine")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(dto)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.name").value("Vacina Teste"));
+    }
+
 }
