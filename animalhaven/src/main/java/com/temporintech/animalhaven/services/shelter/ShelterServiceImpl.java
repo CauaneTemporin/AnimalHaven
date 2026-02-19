@@ -5,14 +5,13 @@ import java.util.UUID;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.temporintech.animalhaven.dtos.ShelterRecordDTO;
-import com.temporintech.animalhaven.model.ShelterModel;
-import com.temporintech.animalhaven.repositories.ShelterRepository;
-import com.temporintech.animalhaven.services.animal.AnimalService;
+import com.temporintech.animalhaven.dtos.shelter.ShelterDTO;
+import com.temporintech.animalhaven.model.shelter.ShelterModel;
+import com.temporintech.animalhaven.repositories.shelter.ShelterRepository;
+import com.temporintech.animalhaven.services.animals.animal.AnimalService;
 import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 
@@ -24,14 +23,14 @@ public class ShelterServiceImpl implements ShelterService {
     private final AnimalService animalService;
 
     @Transactional
-    public ShelterModel save(ShelterRecordDTO dto) {
+    public ShelterModel save(ShelterDTO dto) {
         ShelterModel model = new ShelterModel();
         BeanUtils.copyProperties(dto, model);
         return repository.save(model);
     }
 
     @Transactional
-    public ShelterModel update(UUID id, ShelterRecordDTO dto) {
+    public ShelterModel update(UUID id, ShelterDTO dto) {
         ShelterModel shelterModel = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Shelter with ID " + id + " not found"));
         BeanUtils.copyProperties(dto, shelterModel);

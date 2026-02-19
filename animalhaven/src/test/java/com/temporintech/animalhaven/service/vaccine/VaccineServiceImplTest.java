@@ -6,17 +6,17 @@ import static org.mockito.Mockito.*;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.temporintech.animalhaven.services.vaccine.VaccineServiceImpl;
+import com.temporintech.animalhaven.services.animals.vaccine.VaccineServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.temporintech.animalhaven.dtos.VaccineRecordDTO;
-import com.temporintech.animalhaven.model.VaccineModel;
-import com.temporintech.animalhaven.repositories.VaccineRepository;
-import com.temporintech.animalhaven.services.animal.AnimalService;
+import com.temporintech.animalhaven.dtos.animal.VaccineDTO;
+import com.temporintech.animalhaven.model.animal.VaccineModel;
+import com.temporintech.animalhaven.repositories.animal.VaccineRepository;
+import com.temporintech.animalhaven.services.animals.animal.AnimalService;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 
 class VaccineServiceImplTest {
@@ -44,7 +44,7 @@ class VaccineServiceImplTest {
 
     @Test
     void save_ShouldSaveVaccine() {
-        VaccineRecordDTO dto = new VaccineRecordDTO("Test", "1 dose", "Pfizer", "12345", "Observations", null);
+        VaccineDTO dto = new VaccineDTO("Test", "1 dose", "Pfizer", "12345", "Observations", null);
         when(repository.save(any(VaccineModel.class))).thenReturn(vaccine);
 
         VaccineModel savedVaccine = service.save(dto);

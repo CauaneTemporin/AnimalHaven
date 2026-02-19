@@ -1,11 +1,11 @@
 package com.temporintech.animalhaven.controller.vaccine;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.temporintech.animalhaven.controllers.VaccineController;
+import com.temporintech.animalhaven.controllers.animal.vaccine.VaccineController;
 import com.temporintech.animalhaven.controllers.advice.GlobalExceptionHandler;
-import com.temporintech.animalhaven.dtos.VaccineRecordDTO;
-import com.temporintech.animalhaven.model.VaccineModel;
-import com.temporintech.animalhaven.services.vaccine.VaccineServiceImpl;
+import com.temporintech.animalhaven.dtos.animal.VaccineDTO;
+import com.temporintech.animalhaven.model.animal.VaccineModel;
+import com.temporintech.animalhaven.services.animals.vaccine.VaccineServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -56,9 +56,9 @@ class VaccineControllerTest {
 
     @Test
     void testSaveVaccine_Success() throws Exception {
-        VaccineRecordDTO dto = new VaccineRecordDTO("Vacina Teste", "1 dose", "Fabricante Teste", "Lote 12345", "Observação", null);
+        VaccineDTO dto = new VaccineDTO("Vacina Teste", "1 dose", "Fabricante Teste", "Lote 12345", "Observação", null);
 
-        when(vaccineService.save(any(VaccineRecordDTO.class))).thenReturn(vaccineModel);
+        when(vaccineService.save(any(VaccineDTO.class))).thenReturn(vaccineModel);
 
         mockMvc.perform(post("/vaccine")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -70,7 +70,7 @@ class VaccineControllerTest {
     @Test
     void testSaveVaccine_InvalidInput() throws Exception {
         // DTO inválido com campos em branco
-        VaccineRecordDTO invalidDto = new VaccineRecordDTO("", "", "", "", "", null);
+        VaccineDTO invalidDto = new VaccineDTO("", "", "", "", "", null);
 
         mockMvc.perform(post("/vaccine")
                         .contentType(MediaType.APPLICATION_JSON)

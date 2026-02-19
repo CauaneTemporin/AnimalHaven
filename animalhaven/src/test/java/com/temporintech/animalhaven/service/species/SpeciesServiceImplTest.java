@@ -1,12 +1,12 @@
 package com.temporintech.animalhaven.service.species;
 
-import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
-import com.temporintech.animalhaven.model.SpeciesModel;
-import com.temporintech.animalhaven.repositories.SpeciesRepository;
-import com.temporintech.animalhaven.services.animal.AnimalService;
+import com.temporintech.animalhaven.dtos.animal.SpeciesDTO;
+import com.temporintech.animalhaven.model.animal.SpeciesModel;
+import com.temporintech.animalhaven.repositories.animal.SpeciesRepository;
+import com.temporintech.animalhaven.services.animals.animal.AnimalService;
 import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
-import com.temporintech.animalhaven.services.species.SpeciesServiceImpl;
+import com.temporintech.animalhaven.services.animals.species.SpeciesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -34,7 +34,7 @@ public class SpeciesServiceImplTest {
 
     private UUID speciesId;
     private SpeciesModel speciesModel;
-    private SpeciesRecordDTO speciesDTO;
+    private SpeciesDTO speciesDTO;
 
     @BeforeEach
     public void setup() {
@@ -44,7 +44,7 @@ public class SpeciesServiceImplTest {
         speciesModel.setId(speciesId);
         speciesModel.setName("Test Species");
 
-        speciesDTO = new SpeciesRecordDTO("Test Species");
+        speciesDTO = new SpeciesDTO("Test Species");
     }
 
     @Test

@@ -1,13 +1,13 @@
 package com.temporintech.animalhaven.service.doctor;
 
 import com.temporintech.animalhaven.dtos.DoctorRecordDTO;
-import com.temporintech.animalhaven.enums.status.Status;
-import com.temporintech.animalhaven.model.DoctorModel;
-import com.temporintech.animalhaven.repositories.DoctorRepository;
-import com.temporintech.animalhaven.services.doctor.DoctorServiceImpl;
+import com.temporintech.animalhaven.enums.util.Status;
+import com.temporintech.animalhaven.model.volunteers.DoctorModel;
+import com.temporintech.animalhaven.repositories.volunteers.VolunteersRepository;
+import com.temporintech.animalhaven.services.volunteers.VolunteersServiceImpl;
 import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
-import com.temporintech.animalhaven.services.vaccine.VaccineServiceImpl;
+import com.temporintech.animalhaven.services.animals.vaccine.VaccineServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -25,10 +25,10 @@ import static org.mockito.Mockito.*;
 class DoctorServiceImplTest {
 
     @InjectMocks
-    private DoctorServiceImpl doctorService;
+    private VolunteersServiceImpl doctorService;
 
     @Mock
-    private DoctorRepository doctorRepository;
+    private VolunteersRepository doctorRepository;
 
     @Mock
     private VaccineServiceImpl vaccineService;

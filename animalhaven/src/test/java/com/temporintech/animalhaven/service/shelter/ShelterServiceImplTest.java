@@ -1,9 +1,9 @@
 package com.temporintech.animalhaven.services.shelter;
 
-import com.temporintech.animalhaven.dtos.ShelterRecordDTO;
-import com.temporintech.animalhaven.model.ShelterModel;
-import com.temporintech.animalhaven.repositories.ShelterRepository;
-import com.temporintech.animalhaven.services.animal.AnimalService;
+import com.temporintech.animalhaven.dtos.shelter.ShelterDTO;
+import com.temporintech.animalhaven.model.shelter.ShelterModel;
+import com.temporintech.animalhaven.repositories.shelter.ShelterRepository;
+import com.temporintech.animalhaven.services.animals.animal.AnimalService;
 import com.temporintech.animalhaven.services.exceptions.AssociationException;
 import com.temporintech.animalhaven.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +32,7 @@ class ShelterServiceImplTest {
 
     private UUID shelterId;
     private ShelterModel shelter;
-    private ShelterRecordDTO shelterDTO;
+    private ShelterDTO shelterDTO;
 
     @BeforeEach
     void setUp() {
@@ -46,7 +45,7 @@ class ShelterServiceImplTest {
         shelter.setPhoneNumber("123456789");
         shelter.setCapacity(50);
 
-        shelterDTO = new ShelterRecordDTO("Shelter A", "123 Street", "123456789", 50);
+        shelterDTO = new ShelterDTO("Shelter A", "123 Street", "123456789", 50);
     }
 
     @Test

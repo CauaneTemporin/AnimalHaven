@@ -1,10 +1,10 @@
 package com.temporintech.animalhaven.controller.species;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.temporintech.animalhaven.controllers.SpeciesController;
-import com.temporintech.animalhaven.dtos.SpeciesRecordDTO;
-import com.temporintech.animalhaven.model.SpeciesModel;
-import com.temporintech.animalhaven.services.species.SpeciesServiceImpl;
+import com.temporintech.animalhaven.controllers.animal.species.SpeciesController;
+import com.temporintech.animalhaven.dtos.animal.SpeciesDTO;
+import com.temporintech.animalhaven.model.animal.SpeciesModel;
+import com.temporintech.animalhaven.services.animals.species.SpeciesServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class SpeciesControllerTest {
     private ObjectMapper objectMapper;
 
     private SpeciesModel speciesModel;
-    private SpeciesRecordDTO speciesDTO;
+    private SpeciesDTO speciesDTO;
     private UUID speciesId;
 
     @BeforeEach
@@ -44,12 +44,12 @@ public class SpeciesControllerTest {
         speciesModel.setId(speciesId);
         speciesModel.setName("Test Species");
 
-        speciesDTO = new SpeciesRecordDTO("Test Species");
+        speciesDTO = new SpeciesDTO("Test Species");
     }
 
     @Test
     public void testSaveSpecies() throws Exception {
-        when(speciesService.save(any(SpeciesRecordDTO.class))).thenReturn(speciesModel);
+        when(speciesService.save(any(SpeciesDTO.class))).thenReturn(speciesModel);
 
         mockMvc.perform(post("/species")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -78,7 +78,7 @@ public class SpeciesControllerTest {
 
     @Test
     public void testUpdateSpecies() throws Exception {
-        when(speciesService.update(eq(speciesId), any(SpeciesRecordDTO.class))).thenReturn(speciesModel);
+        when(speciesService.update(eq(speciesId), any(SpeciesDTO.class))).thenReturn(speciesModel);
 
         mockMvc.perform(put("/species/{id}", speciesId)
                         .contentType(MediaType.APPLICATION_JSON)
